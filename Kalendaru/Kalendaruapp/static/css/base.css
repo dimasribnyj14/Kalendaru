@@ -1,0 +1,124 @@
+:root {
+    --event-kalendaru: #00FFB3;
+    --event-user: #D0FAFB;
+    --event-official: #FFDE66;
+    --task-completed-background: #FFDE66;
+    --white-blue: #E8FDFD;
+    --almost-white-blue: #D0FAFB;
+    --blackest-blue: #021717;
+    /* Самий темніший синій колір*/
+    --black-blue: #042E2F;
+    /* Один з темнішних синіх кольорів*/
+    --very-bright-blue: #A1F5F7;
+    --not-really-very-bright-blue: #72F0F3;
+    --bright-blue: #44ECEE;
+    --blue: #27E9EC;
+    --little-blackier-blue: #11B9BB;
+    --little-more-blackier-blue: #0C8A8D;
+    --blackier-blue: #085C5E;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    display: flex;
+    flex-direction: column;
+    padding: 0px;
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+
+}
+
+@media only screen and (min-width: 701px) {
+    .side-main {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 0px 0px 0px 0.9%;
+        gap: 10px;
+        justify-content: center;
+        position: absolute;
+        width: 2.5%;
+        height: 100%;
+        left: 0px;
+        top: 0px;
+        transition-duration: 500ms;
+        background: var(--not-really-very-bright-blue);
+    }
+
+    .icons,
+    .text {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+
+        width: 2.5%;
+        height: 100%;
+        padding: 0px 0px 0px 20%;
+
+        /* Inside auto layout */
+
+        flex: none;
+        order: 0;
+        align-self: stretch;
+        flex-grow: 0;
+    }
+
+    .main {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+        isolation: isolate;
+
+        width: 100%;
+        height: 100%;
+        /* Inside auto layout */
+
+        flex: none;
+        order: 0;
+        align-self: stretch;
+        flex-grow: 0;
+    }
+
+    .buttons {
+        cursor: pointer;
+        -webkit-user-drag: none;
+    }
+
+    .buttons:hover {
+        background-color: rgba(255, 255, 255, 0.5);
+    }
+
+    .buttons:active {
+        background-color: rgba(177, 177, 177, 0.5);
+    }
+
+    .side-main:hover {
+        width: 10%;
+
+    }
+
+    .icons:hover+.text {
+        display: none;
+    }
+
+    .lower,
+    .upper {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0px;
+        flex: none;
+        flex-grow: 0;
+    }
+}

@@ -1,0 +1,30 @@
+{% extends "base/base.html" %}
+{% load static %}
+
+{% block title %}
+Kalendaru - Вхід
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/signin.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="signin">
+        <h1>Вхід</h1>
+        <input type="text" name="email" placeholder="Електронна пошта">
+        <input type="text" name="pasword" placeholder="Пароль">
+        <div class="buttons-signin">
+            <button class="button">Увійти</button>
+            <button class="button">Реєстрація</button>
+        </div>
+        <button class="button">Продовжити без облікового запису</button>
+        <button class="button">Забули пароль?</button>
+        <p>Увага! Без облікового запису ви не можете зберегти свої дані.</p>
+        <a>Детальніше</a>
+    </div>
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'js/signin.js' %}" defer></script>
+{% endblock %}

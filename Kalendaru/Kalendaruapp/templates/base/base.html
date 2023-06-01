@@ -1,0 +1,48 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}"> 
+    <link rel="icon" type="image/x-icon" href="{% static 'img/kalendaruk.ico' %}">
+    {% block css %}{% endblock %}
+</head>
+<body style="background-image: url('{% static "img/background.png" %}');">
+    <div class="main">
+        {% block content %}
+        {% endblock %}
+    </div>
+    <div class="side-main">
+        <div class="icons">
+            <div class="upper">
+                <img class = 'buttons main-button' src="{% static 'img/logo.svg' %}" alt="IMG has not loaded :(">
+                <img class = 'buttons notes-button' src="{% static 'img/bookmark.svg' %}" alt="IMG has not loaded :(">
+                <img class = 'buttons tasks-button' src="{% static 'img/check-square.svg' %}" alt="IMG has not loaded :(">
+            </div>
+            <div class="lower">
+                <img class = 'buttons login-button' src="{% static 'img/log-in.svg' %}" alt="IMG has not loaded :(">
+                <img class = 'buttons support-button' src="{% static 'img/headphones.svg' %}" alt="IMG has not loaded :(">
+                <img class = 'buttons options-button' src="{% static 'img/settings.svg' %}" alt="IMG has not loaded :(">
+            </div>
+        </div>
+        <div class="text">
+            <div class="upper">
+                <h3 class="text-buttons main-button">Kalendaru</h3>
+                <h3 class="text-buttons notes-button">Нотатки</h3>
+                <h3 class="text-buttons tasks-button">Події</h3>
+            </div>
+            <div class="lower">
+                <h3 class="text-buttons login-button">Вхід</h3>
+                <h3 class="text-buttons support-button">Підтримка</h3>
+                <h3 class="text-buttons options-button">Опції</h3>
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'js/base.js' %}" defer></script>
+    {% block js %}{% endblock %}
+    
+</body>
+</html>
+

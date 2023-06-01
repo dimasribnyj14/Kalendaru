@@ -1,0 +1,28 @@
+{% extends "base/base.html" %}
+{% load static %}
+
+{% block title %}
+Kalendaru - Реєстрація
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/signup.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="signin">
+        <h1>Реєстрація</h1>
+        <input type="email" name="email" placeholder="Електронна пошта">
+        <input type="password" name="password" placeholder="Пароль">
+        <input type="text" name="nickname" placeholder="Нікнейм">
+        <input type="checkbox" name="checkbox" placeholder="Я погоджуюсь з умовами положення про та угодою користувача">
+        <div class="buttons">
+            <button class="button">Зареєструватися</button>
+            <button class="button">Вхід</button>
+        </div>
+    </div>
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'js/signup.js' %}" defer></script>
+{% endblock %}
