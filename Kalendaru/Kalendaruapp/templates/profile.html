@@ -1,0 +1,50 @@
+{% extends "base/base.html" %}
+{% load static %}
+
+{% block title %}
+Kalendaru - Реєстрація
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/signup.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="profile">
+        <h2>Ваш профіль</h2>
+        <div class="profile-top">
+            {% comment %} img {% endcomment %}
+            <div class="profile-text">
+                <h5><strong>Ім’я: </strong></h5>
+                <h5><strong>Електронна пошта: </strong></h5>
+                <h5><strong>Дата створення облікового запису </strong></h5>
+                <a style="-webkit-appearance: button; -moz-appearance: button; appearance: button; text-decoration: none; color: initial;" href="{% url 'options' %}" class="button-profile">Перейти до опції облікового запису</a>
+            </div>
+        </div>
+        <div class="profile-bottom">
+            <div class="notes">
+                <h3>Ваші нотатки</h3>
+                <div class="notes-content">
+                    <h4>Ще немає нотаток</h4>
+                </div>
+            </div>
+            <div class="tasks">
+                <h3>Ваші нотатки</h3>
+                <div class="tasks-content">
+                    <div class="task">
+                        <h3>Треба виконати</h3>
+                        <h4>Ще немає завдань</h4>
+                    </div>
+                    <div class="done">
+                        <h3>Виконано</h3>
+                        <h4>Ще немає виконаних</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'js/signup.js' %}" defer></script>
+{% endblock %}

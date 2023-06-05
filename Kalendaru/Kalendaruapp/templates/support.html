@@ -1,0 +1,33 @@
+{% extends "base/base.html" %}
+{% load static %}
+
+{% block title %}
+Kalendaru - Зворотній зв'язок
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/support.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="support">
+        <h1>Зворотній зв'язок</h1>
+        <form method="POST" id="form-support" action="{% url 'support' %}">
+            {% csrf_token %}
+                <input class="input" type="name" required name="name" placeholder="Ім'я">
+                <input class="input" type="email" required name="email" placeholder="Електронна пошта">
+                <textarea class="textarea-message" required name="message" cols="30" rows="10" placeholder="Повідомлення"></textarea>
+                <button class="button-support">Відправити повідомлення</button>
+                 
+        </form>
+   
+    </div>
+    <p>Електронна пошта: kalendaruhelp@gmail.com</p>
+    <p style="color: #A51C1C">Увага! Після того, як відправили повідомлення, чекайте відповідь на тій пошті, яку ви писали.</p>
+   <p class='success-message' style="color: green">Відправка пройшла успішно!</p>
+
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'js/support.js' %}" defer></script>
+{% endblock %}

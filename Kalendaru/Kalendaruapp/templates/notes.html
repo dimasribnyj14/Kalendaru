@@ -1,0 +1,54 @@
+{% extends "base/base.html" %}
+{% load static %}
+
+{% block title %}
+Kalendaru - Реєстрація
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/signup.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="notes">
+        <h2>Нотатки</h2>
+        <div class="notes-days">
+            <div class="days">
+                <h4>Ще немає нотаток</h4>
+            </div>
+            <div class="note-description">
+                <div class="input">
+                    <h3>Назва</h3>
+                    <input class="input" required type="text" name="name" placeholder="Назва">
+                </div>
+                <div class="input">
+                    <h3>Подія</h3>
+                    <input class="input" required type="text" name="event" placeholder="Подія">
+                    <div class="dropdown">
+                      <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Подія
+                      </button>
+                      <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Завдання</a></li>
+                        <li><a class="dropdown-item" href="#">Свято</a></li>
+                        <li><a class="dropdown-item" href="#">Інша подія</a></li>
+                      </ul>
+                    </div>
+                </div>
+                <div class="input">
+                    <h3>Опис</h3>
+                    <textarea class="textarea-message" required name="description" cols="30" rows="10" placeholder="Опис"></textarea>
+                </div>
+                <div class="input">
+                    <h3>Дата</h3>
+                    <input class="input" required type="text" name="date" placeholder="Дата">
+                </div>
+                <button class="add-note">Створити нотаток</button>
+            </div>
+        </div>     
+    </div>
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'js/signup.js' %}" defer></script>
+{% endblock %}

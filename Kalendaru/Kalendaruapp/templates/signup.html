@@ -10,16 +10,29 @@ Kalendaru - Реєстрація
 {% endblock %}
 
 {% block content %}
-    <div class="signin">
+    <div class="signup">
         <h1>Реєстрація</h1>
-        <input type="email" name="email" placeholder="Електронна пошта">
-        <input type="password" name="password" placeholder="Пароль">
-        <input type="text" name="nickname" placeholder="Нікнейм">
-        <input type="checkbox" name="checkbox" placeholder="Я погоджуюсь з умовами положення про та угодою користувача">
-        <div class="buttons">
-            <button class="button">Зареєструватися</button>
-            <button class="button">Вхід</button>
-        </div>
+        <form method="POST" id="form-signin">
+            {% csrf_token %}
+            <input class="input" required type="text" name="nickname" placeholder="Логін">
+            <input class="input" required type="email" name="email" placeholder="Електронна пошта">
+            <input class="input" required type="password" name="password" placeholder="Пароль">
+            
+            <input type="file" style="display: none;" name="avatar" value="{% static 'img/noavatar.png' %}">
+            <div class="checkbox">
+                <input required type="checkbox" name="checkbox">
+                <p class="agree">Я погоджуюсь з умовами положення про та угодою користувача</p>
+                {% comment %} <div class="form-check form-switch messages-button">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                    <label class="form-check-label" for="flexSwitchCheckDefault">Я погоджуюсь з умовами положення про та угодою користувача</label>
+                </div> {% endcomment %}
+            </div>
+            <div class="buttons-signup">
+                <button class="button-signup">Зареєструватися</button>
+                <button class="button-signup">Вхід</button>
+            </div>
+            <p style='color: #A51C1C'>{{ error_text }}</p>
+        </form>
     </div>
 {% endblock %}
 

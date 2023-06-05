@@ -20,8 +20,14 @@ from .settings import *
 from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('login',sign_in),
-    path("register", sign_up),
+    path('login',sign_in, name='login'),
+    path("register", sign_up, name='register'),
+    path('support',support, name='support'),
+    path('options',options, name='options'),
+    path('',calendar, name='calendar'),
+    path('tasks',tasks, name='tasks'),
+    path('profile',profile, name='profile'),
+    path('notes',notes, name='notes'),
 ]
 if DEBUG:
     urlpatterns += static(MEDIA_URL, document_root = MEDIA_ROOT)

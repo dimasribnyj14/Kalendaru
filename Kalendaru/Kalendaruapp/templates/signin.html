@@ -12,17 +12,130 @@ Kalendaru - Вхід
 {% block content %}
     <div class="signin">
         <h1>Вхід</h1>
-        <input type="text" name="email" placeholder="Електронна пошта">
-        <input type="text" name="pasword" placeholder="Пароль">
-        <div class="buttons-signin">
-            <button class="button">Увійти</button>
-            <button class="button">Реєстрація</button>
-        </div>
-        <button class="button">Продовжити без облікового запису</button>
+        <form method="POST" id="form-signin">
+            {% csrf_token %}
+            <input class="input" type="username" required name="username" placeholder="Логін">
+            <input class="input" type="password" required name="password" placeholder="Пароль">
+            <div class="buttons-signin">
+                <button class="button-signin">Увійти</button>
+                
+        
+                <a class="button-signin registration" href="{% url 'register' %}">Реєстрація</a> 
+            </div>
+            
+        </form>    
+        
+        <a class="button" href="{% url 'calendar' %}">Продовжити без облікового запису</a>
         <button class="button">Забули пароль?</button>
         <p>Увага! Без облікового запису ви не можете зберегти свої дані.</p>
-        <a>Детальніше</a>
+        <a href="#" id='more-about-account'>Детальніше</a>
     </div>
+    <p style='color: #A51C1C'>{{ error_text }}</p>
+            <div class="close-modal"></div>
+        <div class="modal-window" id="modal-window">
+            <div class="modal">
+                {% comment %} Вот сюда {% endcomment %}
+                <div class="without-an-account">
+                    <h1>Без облікового запису</h1>
+                    <div class="list-pros">
+                        <div class="pros">
+                            <h4>Можливість створювати нотатки</h4>
+                            <img src="{% static 'img/checkbox-checked.svg' %}" alt="#">
+                        </div>
+
+                        <div class="pros">
+                            <h4>Можливість написати у підтримку</h4>
+                            <img src="{% static 'img/checkbox-checked.svg' %}" alt="#">
+                        </div>
+
+                        <div class="pros">
+                            <h4>Можливість мати сповіщення</h4>
+                            <img src="{% static 'img/checkbox-checked.svg' %}" alt="#">
+                        </div>
+
+                        <div class="pros">
+                            <h4>Можливість дивитися на календар</h4>
+                            <img src="{% static 'img/checkbox-checked.svg' %}" alt="#">
+                        </div>
+
+                        <div class="pros">
+                            <h4>Синхронізувати дані з іншими пристроями</h4>
+                            <img src="{% static 'img/checkbox-notchecked.svg' %}" alt="#">
+                        </div>
+
+                        <div class="pros">
+                            <h4>Можливість зберігати дані</h4>
+                            <img src="{% static 'img/checkbox-notchecked.svg' %}" alt="#">
+                        </div>
+
+                        <div class="pros">
+                            <h4>Створювати завдання</h4>
+                            <img src="{% static 'img/checkbox-notchecked.svg' %}" alt="#">
+                        </div>
+
+                        <div class="pros">
+                            <h4>Видзначати завдання як виконані</h4> 
+                            <img src="{% static 'img/checkbox-notchecked.svg' %}" alt="#">
+                        </div>
+
+                    </div>
+
+                    <div class="with-an-account">
+                        <h1>З обліковим записом</h1>
+                        <div class="list-pros">
+                            <div class="pros">
+                                <h4>Можливість створювати нотатки</h4>
+                                <img src="{% static 'img/checkbox-checked.svg' %}" alt="#">
+                            </div>
+    
+                            <div class="pros">
+                                <h4>Можливість написати у підтримку</h4>
+                                <img src="{% static 'img/checkbox-checked.svg' %}" alt="#">
+                            </div>
+    
+                            <div class="pros">
+                                <h4>Можливість мати сповіщення</h4>
+                                <img src="{% static 'img/checkbox-checked.svg' %}" alt="#">
+                            </div>
+    
+                            <div class="pros">
+                                <h4>Можливість дивитися на календар</h4>
+                                <img src="{% static 'img/checkbox-checked.svg' %}" alt="#">
+                            </div>
+    
+                            <div class="pros">
+                                <h4>Синхронізувати дані з іншими пристроями</h4>
+                                <img src="{% static 'img/checkbox-checked.svg' %}" alt="#">
+                            </div>
+    
+                            <div class="pros">
+                                <h4>Можливість зберігати дані</h4>
+                                <img src="{% static 'img/checkbox-checked.svg' %}" alt="#">
+                            </div>
+    
+                            <div class="pros">
+                                <h4>Створювати завдання</h4>
+                                <img src="{% static 'img/checkbox-checked.svg' %}" alt="#">
+                            </div>
+    
+                            <div class="pros">
+                                <h4>Видзначати завдання як виконані</h4> 
+                                <img src="{% static 'img/checkbox-checked.svg' %}" alt="#">
+                            </div>
+    
+                        </div>
+                    
+                </div>
+
+                
+                
+                
+
+   
+            </div>
+        </div>
+
+        
 {% endblock %}
 
 {% block js %}

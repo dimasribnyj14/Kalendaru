@@ -1,0 +1,61 @@
+{% extends "base/base.html" %}
+{% load static %}
+
+{% block title %}
+Kalendaru - Реєстрація
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/signup.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="tasks">
+        <h2>Нотатки</h2>
+        <div class="task-content">
+            <div class="task-list">
+                <div class="task">
+                    <h3>Треба виконати</h3>
+                    <h4>Ще немає завдань</h4>
+                </div>
+                <div class="done">
+                    <h3>Виконано</h3>
+                    <h4>Ще немає виконаних</h4>
+                </div>
+            </div>
+            <div class="task-description">
+                <div class="input">
+                    <h3>Назва</h3>
+                    <input class="input" required type="text" name="name" placeholder="Назва">
+                </div>
+                <div class="input">
+                    <h3>Подія</h3>
+                    <input class="input" required type="text" name="event" placeholder="Подія">
+                    <div class="dropdown">
+                      <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Подія
+                      </button>
+                      <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Завдання</a></li>
+                        <li><a class="dropdown-item" href="#">Свято</a></li>
+                        <li><a class="dropdown-item" href="#">Інша подія</a></li>
+                      </ul>
+                    </div>
+                </div>
+                <div class="input">
+                    <h3>Опис</h3>
+                    <textarea class="textarea-message" required name="description" cols="30" rows="10" placeholder="Опис"></textarea>
+                </div>
+                <div class="input">
+                    <h3>Виконати до</h3>
+                    <input class="input" required type="text" name="date" placeholder="Дата">
+                </div>
+                <button class="add-task">Створити завдання</button>
+            </div>
+        </div>     
+    </div>
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'js/signup.js' %}" defer></script>
+{% endblock %}

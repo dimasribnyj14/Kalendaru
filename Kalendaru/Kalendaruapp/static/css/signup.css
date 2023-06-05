@@ -1,0 +1,138 @@
+:root {
+    --event-kalendaru: #00FFB3;
+    --event-user: #D0FAFB;
+    --event-official: #FFDE66;
+    --task-completed-background: #FFDE66;
+    --white-blue: #E8FDFD;
+    --almost-white-blue: #D0FAFB;
+    --blackest-blue: #021717;
+    /* Самий темніший синій колір*/
+    --black-blue: #042E2F;
+    /* Один з темнішних синіх кольорів*/
+    --very-bright-blue: #A1F5F7;
+    --not-really-very-bright-blue: #72F0F3;
+    --bright-blue: #44ECEE;
+    --blue: #27E9EC;
+    --little-blackier-blue: #11B9BB;
+    --little-more-blackier-blue: #0C8A8D;
+    --blackier-blue: #085C5E;
+}
+
+h5 {
+    font-family: system-ui;
+    font-style: normal;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.signup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 20px;
+    gap: 10px;
+    width: 20%;
+    height: 40%;
+    background: var(--bright-blue);
+    border-radius: 20px;
+}
+
+.input {
+    box-sizing: border-box;
+
+    /* Auto layout */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px 15px;
+    gap: 5px;
+    width: 100%;
+    height: 15%;
+
+    /* CSK - #27E9EC/100
+
+CSK - #27E9EC/100
+*/
+    background: var(--almost-white-blue);
+    border: 1px solid #000000;
+    border-radius: 30px;
+}
+
+.checkbox {
+    box-sizing: border-box;
+
+    /* Auto layout */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 15px;
+    gap: 10px;
+    width: 100%;
+    height: 15%;
+
+    /* CSK - #27E9EC/200
+    
+    CSK - #27E9EC/200
+    */
+    background: var(--very-bright-blue);
+    border: 1px solid #000000;
+    border-radius: 30px;
+}
+
+.buttons-signup {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 10px;
+    width: 100%;
+    height: 15%;
+}
+
+.button-signup {
+    /* display: flex; */
+    box-sizing: border-box;
+
+    /* Auto layout */
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    gap: 10px;
+    width: 100%;
+    text-align: center;
+    height: 100%;
+
+    /* CSK - #27E9EC/600
+    
+    CSK - #27E9EC/600
+    */
+    background: var(--little-blackier-blue);
+    border: 1px solid #000000;
+    border-radius: 30px;
+    justify-content: center;
+    align-items: center;
+}
+
+.button-signup:hover {
+    background: var(--very-bright-blue);
+}
+
+.button-signup:active {
+    background: var(--not-really-very-bright-blue);
+}
+
+form#form-signin {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+p.agree {
+    display: flex;
+    padding: 12px 0px 0px 0px;
+}

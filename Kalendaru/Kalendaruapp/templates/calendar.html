@@ -1,0 +1,40 @@
+{% extends "base/base.html" %}
+{% load static %}
+
+{% block title %}
+Kalendaru - Реєстрація
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/signup.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="calendar">
+        <div class="calendar-left">
+           <div class="months">
+                <p>Сіцень</p>
+                <p>Лютий</p>
+                <p>Березень</p>
+                <p>Квітень</p>
+                <p>Травень</p>
+                <p>Червень</p>
+                <p>Липень</p>
+                <p>Серпень</p>
+                <p>Вересень</p>
+                <p>Жовтень</p>
+                <p>Листопад</p>
+                <p>Грудень</p>
+           </div> 
+           <div class="calendar">
+                <div class="week">
+                    
+                </div>
+           </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'js/signup.js' %}" defer></script>
+{% endblock %}

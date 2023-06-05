@@ -26,7 +26,11 @@ SECRET_KEY = 'django-insecure-c@-rkhk%yicvn#u$r$^#b9s1b_g=dk67$wlrz!_6f-8ezg_(8z
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'kalendaruhelp@gmail.com'
+EMAIL_HOST_PASSWORD = 'zrpyixhyngqlakmq'
 
 # Application definition
 
