@@ -2,53 +2,110 @@
 {% load static %}
 
 {% block title %}
-Kalendaru - Реєстрація
+Kalendaru - Нотатки
 {% endblock %}
 
 {% block css %}
-<link rel="stylesheet" href="{% static 'css/signup.css' %}">
+<link rel="stylesheet" href="{% static 'css/notes.css' %}">
+{% endblock %}
+
+{% block modal %}
+    <div class="close-modal-window"></div>
+    <form method="POST" class="add-note-modal" style="display: none;">
+        {% csrf_token %}
+        <div class="input">
+            <h3>Назва</h3>
+            <input class="input inputNoteName" required type="text" name="name" placeholder="Назва">
+        </div>
+        <div class="input">
+            <h3>Подія</h3>
+            <div class="event">
+                {% comment %} <input class="input" required type="text" name="event" placeholder="Подія"> {% endcomment %}
+                <select class="form-select input inputNoteAction" aria-label="notes" name="event">
+                <option value="1">Завдання</option>
+                <option selected value="2">Нотаток</option>
+                <option value="3">Свято</option>
+                <option value="4">Інша подія</option>
+                </select>
+            </div>
+        </div>
+        <div class="input">
+            <h3>Опис</h3>
+            <textarea class="textarea-message inputNoteDesc" required name="description" cols="83" rows="5" placeholder="Опис"></textarea>
+        </div>
+        <div class="input">
+            <h3>Дата</h3>
+            <input class="input date-input inputNoteDate" required type="date" name="date" placeholder="Дата">
+        </div>
+        <button class="add-note">Створити нотаток</button>
+    </form>
 {% endblock %}
 
 {% block content %}
+        {% if not user.is_authenticated %}
+            <div class='no-account'>
+                <img src="{% static 'img/alert.svg' %}" alt="#" style='-webkit-user-drag: none;'>
+                <h4 style='padding-top: 10px;'>У вас немає облікового запису, щоб створювати нотатки</h4>
+            </div>
+        {% endif %}
     <div class="notes">
         <h2>Нотатки</h2>
-        <div class="notes-days">
+
+        <div class="notes-content">
             <div class="days">
-                <h4>Ще немає нотаток</h4>
-            </div>
-            <div class="note-description">
-                <div class="input">
-                    <h3>Назва</h3>
-                    <input class="input" required type="text" name="name" placeholder="Назва">
-                </div>
-                <div class="input">
-                    <h3>Подія</h3>
-                    <input class="input" required type="text" name="event" placeholder="Подія">
-                    <div class="dropdown">
-                      <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Подія
-                      </button>
-                      <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Завдання</a></li>
-                        <li><a class="dropdown-item" href="#">Свято</a></li>
-                        <li><a class="dropdown-item" href="#">Інша подія</a></li>
-                      </ul>
+                {% for note in notes %}
+                    <div class="note">
+                        <div class="text-close">
+                            <h5 class='noteName'>{{ note.name }}</h5>
+                            <form action="{% url 'notes' %}" method="POST">
+                                {% csrf_token %}
+                                <input type='image' src="{% static 'img/delete.svg' %}" class="remove-note" value='{{ note.name }}'>
+                                <input type="hidden" name='pknote' value='{{ note.pk }}'>
+                            </form>
+                        </div>
+                        <h6 class='noteDate'>{{ note.date_added }}</h6>
+                        <input type="hidden" class='noteDesc' value="{{ note.description }}">
+                        <input type="hidden" class='noteAction' value="{{ note.action }}">
                     </div>
-                </div>
-                <div class="input">
-                    <h3>Опис</h3>
-                    <textarea class="textarea-message" required name="description" cols="30" rows="10" placeholder="Опис"></textarea>
-                </div>
-                <div class="input">
-                    <h3>Дата</h3>
-                    <input class="input" required type="text" name="date" placeholder="Дата">
-                </div>
-                <button class="add-note">Створити нотаток</button>
+                    
+                {% endfor %}
+            </div>
+            <button class="add-note-button">Створити нотаток</button>
+            <div class="note-description">
+                <form method="POST" style="height: 100%;display: flex;flex-direction: column;justify-content: space-between;">
+                    {% csrf_token %}
+                    <div class="input">
+                        <h3>Назва</h3>
+                        <input class="input inputNoteName" required type="text" name="name" placeholder="Назва">
+                    </div>
+                    <div class="input">
+                        <h3>Подія</h3>
+                        <div class="event">
+                            {% comment %} <input class="input" required type="text" name="event" placeholder="Подія"> {% endcomment %}
+                            <select class="form-select input inputNoteAction" aria-label="notes" name="event">
+                              <option value="1">Завдання</option>
+                              <option selected value="2">Нотаток</option>
+                              <option value="3">Свято</option>
+                              <option value="4">Інша подія</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="input">
+                        <h3>Опис</h3>
+                        <textarea class="textarea-message inputNoteDesc" required name="description" cols="83" rows="5" placeholder="Опис"></textarea>
+                    </div>
+                    <div class="input">
+                        <h3>Дата</h3>
+                        <input class="input date-input inputNoteDate" required type="date" name="date" placeholder="Дата">
+                    </div>
+                    <button class="add-note">Створити нотаток</button>
+                </form>
+
             </div>
         </div>     
     </div>
 {% endblock %}
 
 {% block js %}
-<script src="{% static 'js/signup.js' %}" defer></script>
+<script src="{% static 'js/notes.js' %}" defer></script>
 {% endblock %}

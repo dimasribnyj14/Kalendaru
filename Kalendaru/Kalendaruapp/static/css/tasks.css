@@ -1,0 +1,614 @@
+:root {
+    --event-kalendaru: #00FFB3;
+    --event-user: #D0FAFB;
+    --event-official: #FFDE66;
+    --task-completed-background: #FFDE66;
+    --white-blue: #E8FDFD;
+    --almost-white-blue: #D0FAFB;
+    --blackest-blue: #021717;
+    /* Ð¡Ð°Ð¼Ð¸Ð¹ Ñ‚ÐµÐ¼Ð½Ñ–ÑˆÐ¸Ð¹ ÑÐ¸Ð½Ñ–Ð¹ ÐºÐ¾Ð»Ñ–Ñ€*/
+    --black-blue: #042E2F;
+    /* ÐžÐ´Ð¸Ð½ Ð· Ñ‚ÐµÐ¼Ð½Ñ–ÑˆÐ½Ð¸Ñ… ÑÐ¸Ð½Ñ–Ñ… ÐºÐ¾Ð»ÑŒÐ¾Ñ€Ñ–Ð²*/
+    --very-bright-blue: #A1F5F7;
+    --not-really-very-bright-blue: #72F0F3;
+    --bright-blue: #44ECEE;
+    --blue: #27E9EC;
+    --little-blackier-blue: #11B9BB;
+    --little-more-blackier-blue: #0C8A8D;
+    --blackier-blue: #085C5E;
+}
+
+@media only screen and (min-width: 701px) {
+    .tasks {
+        box-sizing: border-box;
+
+        /* Auto layout */
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px;
+        /* gap: 10px; */
+        width: 50%;
+        height: 90%;
+
+        /* CSK - #27E9EC/200
+        
+        CSK - #27E9EC/200
+        */
+        background: var(--very-bright-blue);
+        /* CSK - #27E9EC/400
+        
+        CSK - #27E9EC/400
+        */
+        border: 1px solid var(--bright-blue);
+        border-radius: 10px;
+    }
+
+    .add-task-modal {
+        display: none;
+    }
+
+    .task-content {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        padding: 10px;
+        gap: 10px;
+
+        width: 100%;
+        height: 100%;
+    }
+
+    .task-list {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px;
+        gap: 10px;
+        width: 40%;
+        height: 95%;
+        overflow-y: scroll;
+
+        /* CSK - #27E9EC/100
+        
+        CSK - #27E9EC/100
+        */
+        background: var(--almost-white-blue);
+        border-radius: 20px;
+    }
+
+    .task-list::-webkit-scrollbar {
+        display: none;
+    }
+
+    .task-description {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+        gap: 10px;
+        width: 100%;
+        height: 95%;
+
+        /* CSK - #27E9EC/100
+        
+        CSK - #27E9EC/100
+        */
+        background: var(--almost-white-blue);
+        border-radius: 20px;
+    }
+
+    .input {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px;
+        gap: 10px;
+        width: 100%;
+        /* height: 100%; */
+
+        /* CSK - #27E9EC/300
+        
+        CSK - #27E9EC/300
+        */
+        background: var(--white-blue);
+        border-radius: 10px;
+    }
+
+    .event {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        height: 100%;
+    }
+
+    .add-task {
+        box-sizing: border-box;
+
+        /* Auto layout */
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+        gap: 10px;
+        width: 100%;
+        /* height: 100%; */
+
+        /* CSK - #27E9EC/600
+        
+        CSK - #27E9EC/600
+        */
+        background: var(--little-blackier-blue);
+        border: 1px solid #000000;
+        border-radius: 30px;
+    }
+
+    .date-input {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .textarea-message {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px;
+        gap: 10px;
+        width: 100%;
+        height: 100%;
+        /* CSK - #27E9EC/300
+
+    CSK - #27E9EC/300
+    */
+        background: var(--white-blue);
+        border-radius: 10px;
+        resize: none;
+    }
+
+    .textarea-message::-webkit-scrollbar {
+        display: none;
+    }
+
+    .add-task-button {
+        display: none;
+    }
+
+    .no-account {
+        display: flex;
+        flex-direction: row;
+        padding: 10px;
+        gap: 10px;
+        position: relative;
+        width: 50%;
+        height: 6%;
+        background: #FFC107;
+        border-radius: 20px;
+        align-items: center;
+    }
+
+    .main {
+        gap: 1%;
+    }
+
+    .text-close {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0px;
+        gap: 10px;
+        width: 100%;
+    }
+
+    .remove-note {
+        cursor: pointer;
+        -webkit-user-drag: none;
+    }
+
+    .remove-note:hover {
+        background-color: rgba(255, 255, 255, 0.5);
+    }
+
+    .remove-note:active {
+        background-color: rgba(177, 177, 177, 0.5);
+    }
+
+    .task {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 10px;
+        width: 100%;
+        /* CSK - #27E9EC/300
+    
+    CSK - #27E9EC/300
+    */
+
+        border-radius: 10px;
+        /* Inside auto layout */
+        flex: none;
+        order: 0;
+        flex-grow: 0;
+        cursor: pointer;
+        transition-duration: 200ms;
+    }
+
+    .done-button {
+        border-radius: 30px;
+        background: var(--task-completed-background);
+        width: 5%;
+        padding: 5px;
+        -webkit-user-drag: none;
+    }
+
+    .done-button:hover {
+        background: #ffe999;
+    }
+
+    .done-button:active {
+        background: #dcbf57;
+    }
+
+    .undone-button {
+        border-radius: 30px;
+        background: var(--blue);
+        width: 5%;
+        padding: 5px;
+        -webkit-user-drag: none;
+        user-select: none;
+    }
+
+    .undone-button:hover {
+        background: #c7f6f6;
+    }
+
+    .undone-button:active {
+        background: #3cc0c2;
+    }
+
+    .text-tasks-buttons {
+        display: flex;
+        width: 100%;
+        user-select: none;
+        height: 6%;
+        gap: 10px;
+    }
+
+}
+
+
+
+
+
+
+
+
+
+/* Дальше для мобилок */
+
+
+
+
+
+
+
+
+@media only screen and (max-width: 700px) {
+    .tasks {
+        box-sizing: border-box;
+
+        /* Auto layout */
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px;
+        gap: 10px;
+        width: 90%;
+        height: 90%;
+
+        /* CSK - #27E9EC/200
+        
+        CSK - #27E9EC/200
+        */
+        background: var(--very-bright-blue);
+        /* CSK - #27E9EC/400
+        
+        CSK - #27E9EC/400
+        */
+        border: 1px solid var(--bright-blue);
+        border-radius: 10px;
+    }
+
+    .task-content {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px;
+        gap: 10px;
+
+        width: 100%;
+        height: 100%;
+    }
+
+    .task-list {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px;
+        gap: 10px;
+
+        width: 100%;
+        height: 100%;
+        overflow-y: scroll;
+        /* CSK - #27E9EC/100
+        
+        CSK - #27E9EC/100
+        */
+        background: var(--almost-white-blue);
+        border-radius: 20px;
+
+    }
+
+    .task-list::-webkit-scrollbar {
+        display: none;
+    }
+
+    .task-description {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+        gap: 10px;
+
+        width: 100%;
+        height: 100%;
+
+        /* CSK - #27E9EC/100
+        
+        CSK - #27E9EC/100
+        */
+        background: var(--almost-white-blue);
+        border-radius: 20px;
+    }
+
+    .textarea-message {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px;
+        gap: 10px;
+        width: 100%;
+        height: 100%;
+        /* CSK - #27E9EC/300
+
+    CSK - #27E9EC/300
+    */
+        background: var(--white-blue);
+        border-radius: 10px;
+        resize: none;
+    }
+
+    .textarea-message::-webkit-scrollbar {
+        display: none;
+    }
+
+    .add-task-button {
+        box-sizing: border-box;
+
+        /* Auto layout */
+
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+        gap: 10px;
+
+        width: 100%;
+
+        /* CSK - #27E9EC/600
+        
+        CSK - #27E9EC/600
+        */
+        background: var(--little-blackier-blue);
+        border: 1px solid #000000;
+        border-radius: 30px;
+
+    }
+
+    .add-task-button:hover {
+        background: var(--very-bright-blue);
+    }
+
+    .add-task-button:active {
+        background: var(--blue);
+    }
+
+    .task {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 10px;
+        width: 100%;
+        /* CSK - #27E9EC/300
+    
+    CSK - #27E9EC/300
+    */
+
+        border-radius: 10px;
+        /* Inside auto layout */
+        flex: none;
+        order: 0;
+        flex-grow: 0;
+        cursor: pointer;
+        transition-duration: 200ms;
+    }
+
+    .text-close {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0px;
+        gap: 10px;
+        width: 100%;
+    }
+
+    .done-button {
+        border-radius: 30px;
+        background: var(--task-completed-background);
+        width: 15%;
+        padding: 5px;
+        -webkit-user-drag: none;
+    }
+
+    .done-button:hover {
+        background: #ffe999;
+    }
+
+    .done-button:active {
+        background: #dcbf57;
+    }
+
+    .undone-button {
+        border-radius: 30px;
+        background: var(--blue);
+        width: 15%;
+        padding: 5px;
+        -webkit-user-drag: none;
+        user-select: none;
+    }
+
+    .undone-button:hover {
+        background: #c7f6f6;
+    }
+
+    .undone-button:active {
+        background: #3cc0c2;
+    }
+
+    .text-tasks-buttons {
+        display: flex;
+        width: 100%;
+        user-select: none;
+        height: 6%;
+        gap: 10px;
+    }
+
+    .add-task-modal {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+        gap: 10px;
+
+        position: absolute;
+        width: 90%;
+        height: 75%;
+        z-index: 9999;
+        opacity: 0;
+        transition-duration: 200ms;
+        /* CSK - #27E9EC/100
+
+        CSK - #27E9EC/100
+        */
+        background: var(--not-really-very-bright-blue);
+        border-radius: 20px;
+    }
+
+    .input {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px;
+        gap: 10px;
+
+        width: 100%;
+        height: 100%;
+
+        /* CSK - #27E9EC/300
+        
+        CSK - #27E9EC/300
+        */
+        background: var(--white-blue);
+        border-radius: 10px;
+    }
+
+    .date-input {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .event {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        height: 100%;
+    }
+
+    .add-task {
+        box-sizing: border-box;
+
+        /* Auto layout */
+
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+        gap: 10px;
+
+        width: 100%;
+        height: 35%;
+
+        /* CSK - #27E9EC/600
+        
+        CSK - #27E9EC/600
+        */
+        background: var(--little-blackier-blue);
+        border: 1px solid #000000;
+        border-radius: 30px;
+
+    }
+}
+
+.remove-task:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.remove-task:active {
+    background-color: rgba(177, 177, 177, 0.5);
+}
+
+.close-modal-window {
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    position: fixed;
+    z-index: 22;
+    display: none;
+}
+
+.cover-div {
+    /* задаем фон черного цвета */
+    background: rgba(0, 0, 0, 0.5);
+    /* задаем ширину и высоту */
+    width: 100%;
+    height: 100%;
+    /* задаем вверх и лево по 0 */
+    left: 0;
+    top: 0;
+    /* выбираем тип позиции absolute */
+    position: fixed;
+    /*  определяет положение позиционированного элемента 20*/
+    z-index: 20;
+    opacity: 0;
+    transition-duration: 200ms;
+}

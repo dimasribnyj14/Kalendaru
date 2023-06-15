@@ -1,0 +1,737 @@
+:root {
+    --event-kalendaru: #00FFB3;
+    --event-user: #D0FAFB;
+    --event-official: #FFDE66;
+    --task-completed-background: #FFDE66;
+    --white-blue: #E8FDFD;
+    --almost-white-blue: #D0FAFB;
+    --blackest-blue: #021717;
+    /* Ð¡Ð°Ð¼Ð¸Ð¹ Ñ‚ÐµÐ¼Ð½Ñ–ÑˆÐ¸Ð¹ ÑÐ¸Ð½Ñ–Ð¹ ÐºÐ¾Ð»Ñ–Ñ€*/
+    --black-blue: #042E2F;
+    /* ÐžÐ´Ð¸Ð½ Ð· Ñ‚ÐµÐ¼Ð½Ñ–ÑˆÐ½Ð¸Ñ… ÑÐ¸Ð½Ñ–Ñ… ÐºÐ¾Ð»ÑŒÐ¾Ñ€Ñ–Ð²*/
+    --very-bright-blue: #A1F5F7;
+    --not-really-very-bright-blue: #72F0F3;
+    --bright-blue: #44ECEE;
+    --blue: #27E9EC;
+    --little-blackier-blue: #11B9BB;
+    --little-more-blackier-blue: #0C8A8D;
+    --blackier-blue: #085C5E;
+}
+
+@media only screen and (min-width: 701px) {
+    .options {
+        box-sizing: border-box;
+
+        /* Auto layout */
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        padding: 10px;
+        gap: 10px;
+        width: 80%;
+        height: 100%;
+
+        /* CSK - #27E9EC/200
+
+        CSK - #27E9EC/200
+        */
+        background: var(--very-bright-blue);
+        /* CSK - #27E9EC/400
+
+        CSK - #27E9EC/400
+        */
+        border: 1px solid var(--bright-blue);
+        border-radius: 10px;
+        justify-content: space-between;
+    }
+
+    .options-left {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+        gap: 10px;
+        width: 23%;
+        height: 100%;
+
+        /* CSK - #27E9EC/100
+        
+        CSK - #27E9EC/100
+        */
+        background: var(--event-user);
+        border-radius: 20px;
+    }
+
+    .options-buttons {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0px;
+        gap: 10px;
+        width: 100%;
+        /* height: 202px; */
+        transition-duration: 250ms;
+    }
+
+    .button-options {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+        gap: 10px;
+        width: 100%;
+        font-size: large;
+        font-weight: 700;
+        /* text-align: center; */
+        /* height: 44%; */
+        /* height: 50px; */
+
+        /* CSK - #27E9EC/300
+        
+        CSK - #27E9EC/300
+        */
+        background: var(--not-really-very-bright-blue);
+        border-radius: 10px;
+        transition-duration: 150ms;
+    }
+
+    .button-options:hover {
+        background: var(--blue);
+        box-shadow: 0px 2px 6px 0px #444444;
+    }
+
+    .button-options:active {
+        background: var(--little-blackier-blue);
+        box-shadow: 0px 0px 6px 0px #444444;
+    }
+
+    .options-right {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+        padding: 10px;
+        gap: 10px;
+
+        width: 100%;
+        height: 100%;
+
+        /* CSK - #27E9EC/100
+        
+        CSK - #27E9EC/100
+        */
+        background: var(--almost-white-blue);
+        border-radius: 20px;
+    }
+
+    .content-option {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0px;
+        transition-duration: 200ms;
+        transition-delay: 200ms;
+    }
+
+    .policy-content {
+        overflow-y: scroll;
+    }
+
+    .terms-content {
+        overflow-y: scroll;
+    }
+
+    .content-option::-webkit-scrollbar {
+        display: none;
+    }
+
+    .button-profile {
+        box-sizing: border-box;
+        cursor: pointer;
+        /* Auto layout */
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 10px;
+        gap: 10px;
+        /* height: 50px; */
+
+        /* CSK - #27E9EC/600
+        
+        CSK - #27E9EC/600
+        */
+        background: var(--little-blackier-blue);
+        border: 1px solid #000000;
+        border-radius: 30px;
+        /* font-family: 'Inter'; */
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        width: 25%;
+        line-height: 24px;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        justify-content: center;
+        transition-duration: 250ms;
+    }
+
+    .button-profile:hover {
+        background: var(--blue);
+    }
+
+    .button-profile:active {
+        background: var(--little-more-blackier-blue);
+    }
+
+    .delete-button {
+        left: 0%;
+        right: 0%;
+        top: 0%;
+        bottom: 0%;
+        background: none;
+        border: none;
+        /* font-family: 'Inter'; */
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 24px;
+        display: flex;
+        align-items: center;
+        color: #A02B2B;
+    }
+
+    .pc {
+        display: flex;
+    }
+
+    .mobile {
+        display: none;
+    }
+
+    .content-option.profile-content {
+        /* display: flex; */
+        justify-content: space-between;
+        width: 100%;
+        height: 100%;
+    }
+
+    form.logout {
+        width: 100%;
+    }
+
+    .profile-content-option {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 100%;
+        height: 100%;
+    }
+
+    .text-and-avatar {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        width: 100%;
+        gap: 1%;
+        padding-left: 5px;
+    }
+
+    #input-file {
+        display: none;
+        opacity: 0;
+        /* height: max-content; */
+        width: 5%;
+        height: 10%;
+        cursor: pointer;
+    }
+
+
+    .profile-not-delete {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5%;
+        height: 25%;
+    }
+
+    .modalDelete {
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 10px 20px;
+        /* gap: 10px; */
+        z-index: 9000;
+        position: absolute;
+        width: 20%;
+        height: 20%;
+        background: #44EBED;
+        border-radius: 20px;
+    }
+
+    .modalDeleteDiv {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+    }
+
+    .passwordModalDelete {
+        box-sizing: border-box;
+
+        /* Auto layout */
+
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 0px 5px;
+        gap: 10px;
+
+        width: 100%;
+        height: 40%;
+
+        /* CSK - #27E9EC/100
+
+        CSK - #27E9EC/100
+        */
+        background: #D0FAFB;
+        border: 1px solid #000000;
+        border-radius: 15px;
+    }
+
+    .buttons-modal-delete {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        /* padding: 10px; */
+        gap: 36px;
+        width: 100%;
+        height: 41%;
+    }
+
+    .button-modal-delete {
+        box-sizing: border-box;
+
+        /* Auto layout */
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+        gap: 10px;
+
+        width: 100%;
+        height: 100%;
+
+        /* CSK - #27E9EC/600
+
+        CSK - #27E9EC/600
+        */
+        border: 1px solid #000000;
+        border-radius: 30px;
+
+    }
+
+    .button-delete {
+        background: #AD1B1B;
+    }
+
+    .button-delete:hover {
+        background: #8f1616;
+    }
+
+    .button-delete:active {
+        background: #701212;
+    }
+
+    .button-no-delete {
+        background: #11B9BB;
+    }
+
+    .button-no-delete:hover {
+        background: #109fa1;
+    }
+
+    .button-no-delete:active {
+        background: #0e7f81;
+    }
+}
+
+
+
+@media only screen and (max-width: 701px) {
+    .options {
+        box-sizing: border-box;
+
+        /* Auto layout */
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px;
+        gap: 10px;
+        width: 90%;
+        height: 90%;
+
+        /* CSK - #27E9EC/200
+
+        CSK - #27E9EC/200
+        */
+        background: var(--very-bright-blue);
+        /* CSK - #27E9EC/400
+
+        CSK - #27E9EC/400
+        */
+        border: 1px solid var(--bright-blue);
+        border-radius: 10px;
+        justify-content: space-between;
+    }
+
+    .options-left {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 10px;
+        gap: 10px;
+        width: 100%;
+        height: 9%;
+
+        /* CSK - #27E9EC/100
+        
+        CSK - #27E9EC/100
+        */
+        background: var(--event-user);
+        border-radius: 20px;
+        overflow-x: scroll;
+        overflow-y: hidden;
+    }
+
+    .options-buttons {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        padding: 0px;
+        gap: 10px;
+        width: 100%;
+        height: 100%;
+        transition-duration: 250ms;
+    }
+
+    .pc {
+        display: none;
+    }
+
+    .mobile {
+        display: flex;
+    }
+
+    .button-options {
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+        gap: 10px;
+        width: 100%;
+        height: 100%;
+        font-size: 16px;
+        /* text-align: center; */
+        min-width: 50%;
+        font-weight: 700;
+        background: var(--not-really-very-bright-blue);
+        border-radius: 10px;
+        transition-duration: 150ms;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .button-options:hover {
+        background: var(--blue);
+        box-shadow: 0px 2px 6px 0px #444444;
+    }
+
+    .button-options:active {
+        background: var(--little-blackier-blue);
+        box-shadow: 0px 0px 6px 0px #444444;
+    }
+
+    .options-right {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+        padding: 10px;
+        gap: 10px;
+
+        width: 100%;
+        height: 90%;
+
+        /* CSK - #27E9EC/100
+        
+        CSK - #27E9EC/100
+        */
+        background: var(--almost-white-blue);
+        border-radius: 20px;
+    }
+
+    .content-option {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0px;
+        transition-duration: 200ms;
+        transition-delay: 200ms;
+    }
+
+    .policy-content {
+        overflow-y: scroll;
+    }
+
+    .terms-content {
+        overflow-y: scroll;
+    }
+
+    .content-option::-webkit-scrollbar {
+        display: none;
+    }
+
+    .button-profile {
+        box-sizing: border-box;
+        cursor: pointer;
+        /* Auto layout */
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 10px;
+        gap: 10px;
+        width: 100%;
+        /* height: 50px; */
+
+        /* CSK - #27E9EC/600
+        
+        CSK - #27E9EC/600
+        */
+        background: var(--little-blackier-blue);
+        border: 1px solid #000000;
+        border-radius: 30px;
+        /* font-family: 'Inter'; */
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 24px;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        justify-content: center;
+        transition-duration: 250ms;
+    }
+
+    .button-profile:hover {
+        background: var(--blue);
+    }
+
+    .button-profile:active {
+        background: var(--little-more-blackier-blue);
+    }
+
+    .delete-button {
+        left: 0%;
+        right: 0%;
+        top: 0%;
+        bottom: 0%;
+        background: none;
+        border: none;
+        /* font-family: 'Inter'; */
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 24px;
+        display: flex;
+        align-items: center;
+        color: #A02B2B;
+    }
+
+    .content-option.profile-content {
+        /* display: flex; */
+        justify-content: space-between;
+        width: 100%;
+        height: 100%;
+    }
+
+    form.logout {
+        width: 100%;
+        height: 100%;
+        min-width: 75%;
+    }
+
+    .profile-content-option {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 100%;
+        height: 100%;
+    }
+
+    .text-and-avatar {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        gap: 10px;
+        width: 100%;
+    }
+
+    .profile-text {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .text {
+        margin: 0px;
+        font-size: medium;
+    }
+
+    #input-file {
+        display: none;
+        opacity: 0;
+        /* height: max-content; */
+        width: 5%;
+        height: 10%;
+        cursor: pointer;
+    }
+
+    .button-options-text {
+        width: 100%;
+    }
+
+    .modalDelete {
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 10px 20px;
+        /* gap: 10px; */
+        z-index: 9000;
+        position: absolute;
+        width: 90%;
+        height: 20%;
+        background: #44EBED;
+        border-radius: 20px;
+    }
+
+    .modalDeleteDiv {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+    }
+
+    .passwordModalDelete {
+        box-sizing: border-box;
+
+        /* Auto layout */
+
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 0px 5px;
+        gap: 10px;
+
+        width: 100%;
+        height: 40%;
+
+        /* CSK - #27E9EC/100
+
+        CSK - #27E9EC/100
+        */
+        background: #D0FAFB;
+        border: 1px solid #000000;
+        border-radius: 15px;
+    }
+
+    .buttons-modal-delete {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        /* padding: 10px; */
+        gap: 36px;
+        width: 100%;
+        height: 41%;
+    }
+
+    .button-modal-delete {
+        box-sizing: border-box;
+
+        /* Auto layout */
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+        gap: 10px;
+
+        width: 100%;
+        height: 100%;
+
+        /* CSK - #27E9EC/600
+
+        CSK - #27E9EC/600
+        */
+        border: 1px solid #000000;
+        border-radius: 30px;
+
+    }
+
+    .button-delete {
+        background: #AD1B1B;
+    }
+
+    .button-delete:hover {
+        background: #8f1616;
+    }
+
+    .button-delete:active {
+        background: #701212;
+    }
+
+    .button-no-delete {
+        background: #11B9BB;
+    }
+
+    .button-no-delete:hover {
+        background: #109fa1;
+    }
+
+    .button-no-delete:active {
+        background: #0e7f81;
+    }
+
+
+}
+
+.input-profile {
+    background: none;
+    border: none;
+}
+
+.cover-div {
+    /* задаем фон черного цвета */
+    background: rgba(0, 0, 0, 0.5);
+    /* задаем ширину и высоту */
+    width: 100%;
+    height: 100%;
+    /* задаем вверх и лево по 0 */
+    left: 0;
+    top: 0;
+    /* выбираем тип позиции absolute */
+    position: fixed;
+    /*  определяет положение позиционированного элемента 20*/
+    z-index: 20;
+}

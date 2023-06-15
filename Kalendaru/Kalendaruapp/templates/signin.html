@@ -16,22 +16,20 @@ Kalendaru - Вхід
             {% csrf_token %}
             <input class="input" type="username" required name="username" placeholder="Логін">
             <input class="input" type="password" required name="password" placeholder="Пароль">
-            <div class="buttons-signin">
+
+            <div class="buttons-signin"> 
                 <button class="button-signin">Увійти</button>
-                
-        
                 <a class="button-signin registration" href="{% url 'register' %}">Реєстрація</a> 
             </div>
-            
         </form>    
         
-        <a class="button" href="{% url 'calendar' %}">Продовжити без облікового запису</a>
-        <button class="button">Забули пароль?</button>
-        <p>Увага! Без облікового запису ви не можете зберегти свої дані.</p>
-        <a href="#" id='more-about-account'>Детальніше</a>
+        {% comment %} <a class="button" href="{% url 'calendar' %}">Продовжити без облікового запису</a> {% endcomment %}
+        {% comment %} <button class="button">Забули пароль?</button> {% endcomment %}
+        {% comment %} <p>Увага! Без облікового запису ви не можете зберегти свої дані.</p> {% endcomment %}
+        {% comment %} <a href="#" id='more-about-account'>Детальніше</a> {% endcomment %}
     </div>
     <p style='color: #A51C1C'>{{ error_text }}</p>
-            <div class="close-modal"></div>
+        <div class="close-modal"></div>
         <div class="modal-window" id="modal-window">
             <div class="modal">
                 {% comment %} Вот сюда {% endcomment %}
@@ -134,8 +132,6 @@ Kalendaru - Вхід
    
             </div>
         </div>
-
-        
 {% endblock %}
 
 {% block js %}

@@ -1,0 +1,96 @@
+<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<style>.Vector_444 {
+	animation: 1.77s linear 0s 1 normal forwards running Vector_444;
+		transform: translateX(9px) translateY(13px);
+		width: 11px;
+		height: 78px;
+}
+@keyframes Vector_444 {
+	0% {
+		transform: translateX(9px) translateY(13px);
+		width: 11px;
+		height: 78px;
+	}
+	16.38% {
+		transform: translateX(9px) translateY(41px);
+	}
+	31.64% {
+		transform: translateX(77px) translateY(74.5px);
+		width: 11px;
+		height: 11px;
+	}
+	100% {
+		width: 11px;
+		height: 78px;
+		transform: translateX(9px) translateY(13px);
+	}
+	15.25% {
+		width: 11px;
+		height: 11px;
+	}
+	47.46% {
+		transform: translateX(77px) translateY(13px);
+	}
+	66.1% {
+		transform: translateX(77px) translateY(13px);
+		width: 11px;
+		height: 11px;
+	}
+	48.02% {
+		transform: translateX(9px) translateY(13px);
+		width: 11px;
+		height: 78px;
+	}
+	82.49% {
+		transform: translateX(9px) translateY(13px);
+		width: 11px;
+		height: 11px;
+	}
+	83.05% {
+		transform: translateX(9px) translateY(13px);
+	}
+	99.44% {
+		transform: translateX(9px) translateY(13px);
+	}
+}.Vector_337 {
+	animation: 1.77s linear 0s 1 normal forwards running Vector_337;
+		transform: translateX(25.78px) translateY(12.8px);
+		width: 65.53px;
+		height: 78.2px;
+}
+@keyframes Vector_337 {
+	0% {
+		transform: translateX(25.78px) translateY(12.8px);
+		width: 65.53px;
+		height: 78.2px;
+	}
+	22.6% {
+		transform: translateX(32.26px) translateY(30px);
+		width: 35px;
+		height: 39px;
+	}
+	82.49% {
+		transform: translateX(32.26px) translateY(30px);
+		width: 35px;
+		height: 39px;
+	}
+	99.44% {
+		transform: translateX(25.78px) translateY(12.8px);
+		width: 65.53px;
+		height: 78.2px;
+	}
+	100% {
+		transform: translateX(25.78px) translateY(12.8px);
+		width: 65.53px;
+		height: 78.2px;
+	}
+}
+</style>
+<g clip-path="url(#clip_0_373)" width="100" height="100" data-name="logo-kalendaruk 2">
+	<rect width="100" height="100" fill="#27E9EC" data-name="logo-kalendaruk 2"/>
+	<path d="M11 0H0V78H11V0Z" fill="#085C5E" data-name="Vector" class="Vector_444"/>
+	<path d="M19.6283 0.800001V79H0.775002V0.800001H19.6283ZM66.305 0.800001L36.0108 40.437L18.2855 59.826L14.8479 42.5317L26.1813 25.3449L43.0473 0.800001H66.305ZM44.0141 79L23.8179 43.767L38.4816 32.9715L66.305 79H44.0141Z" fill="#E8FDFD" data-name="Vector" class="Vector_337"/>
+</g>
+<defs><clipPath id="clip_0_373"><rect width="100" height="100"/></clipPath>
+</defs>
+</svg>

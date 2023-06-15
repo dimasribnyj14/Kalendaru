@@ -4,22 +4,22 @@ from django.contrib.auth.models import User
 class UserProfile(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)
     avatar = models.ImageField(upload_to='avatar/')
+    
 
 class Tasks(models.Model):
-    name = models.CharField(max_length=255)
-    action = models.CharField(max_length=255)
-    description = models.TextField()
-    date_added = models.DateField()
-    hascompleted = models.BooleanField()
-    # user_join = models.ForeignKey("User", on_delete=models.CASCADE)
+    name = models.CharField(max_length=255,null=True,blank=True)
+    action = models.CharField(max_length=255,null=True, blank=True, default=None)
+    description = models.TextField(null=True,blank=True)
+    date_added = models.DateField(null=True,blank=True)
+    hascompleted = models.BooleanField(null=True,blank=True)
+    user_join = models.ForeignKey(User, on_delete=models.CASCADE,null=True,blank=True)
 
 class Notes(models.Model):
     name = models.CharField(max_length=255)
     action = models.CharField(max_length=255)
     description = models.TextField()
     date_added = models.DateField()
-    hasCompleated = models.BooleanField()
-    # user_join = models.ForeignKey("User", on_delete=models.CASCADE)
+    user_join = models.ForeignKey(User, on_delete=models.CASCADE,null=True,blank=True)
 
 class Actions(models.Model):
     name = models.CharField(max_length=255)

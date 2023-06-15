@@ -24,10 +24,17 @@ Kalendaru - Зворотній зв'язок
     </div>
     <p>Електронна пошта: kalendaruhelp@gmail.com</p>
     <p style="color: #A51C1C">Увага! Після того, як відправили повідомлення, чекайте відповідь на тій пошті, яку ви писали.</p>
-   <p class='success-message' style="color: green">Відправка пройшла успішно!</p>
+    <p class='success-message' style="color: green">Відправка пройшла успішно!</p>
+    {% comment %} <div class="iframely-embed">
+        <div class="iframely-responsive" style="height: 140px; padding-bottom: 0;">
+            <a href="https://t.me/kalendaru_bot" data-iframely-url="//iframely.net/1aXrfSg"></a>
+        </div>
+    </div> {% endcomment %}
+{% comment %} <script async src="https://telegram.org/js/telegram-widget.js?22" data-telegram-login="kalendaru_bot" data-size="large" data-userpic="false" data-auth-url="https://t.me/kalendaru_bot" data-request-access="write"></script> {% endcomment %}
 
 {% endblock %}
 
 {% block js %}
+<script async src="//iframely.net/embed.js"></script>
 <script src="{% static 'js/support.js' %}" defer></script>
 {% endblock %}

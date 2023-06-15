@@ -2,22 +2,26 @@
 {% load static %}
 
 {% block title %}
-Kalendaru - Реєстрація
+Kalendaru - Профіль
 {% endblock %}
 
 {% block css %}
-<link rel="stylesheet" href="{% static 'css/signup.css' %}">
+<link rel="stylesheet" href="{% static 'css/profile.css' %}">
 {% endblock %}
 
 {% block content %}
     <div class="profile">
         <h2>Ваш профіль</h2>
         <div class="profile-top">
-            {% comment %} img {% endcomment %}
+            {% if avatar.avatar %}
+                <img class="profile-avatar" src="{{ avatar.avatar.url }}" alt="">
+            {% else %}
+                <img class="profile-avatar" src="{% static 'img/noavatar.png' %}" alt="">
+            {% endif %}
             <div class="profile-text">
-                <h5><strong>Ім’я: </strong></h5>
-                <h5><strong>Електронна пошта: </strong></h5>
-                <h5><strong>Дата створення облікового запису </strong></h5>
+                <h5 class="text"><strong>Ім’я: {{ user.username }}</strong></h5>
+                <h5 class="text"><strong>Електронна пошта: {{ user.email }}</strong></h5>
+                <h5 class="text"><strong>Дата створення облікового запису {{ user.date_joined }}</strong></h5>
                 <a style="-webkit-appearance: button; -moz-appearance: button; appearance: button; text-decoration: none; color: initial;" href="{% url 'options' %}" class="button-profile">Перейти до опції облікового запису</a>
             </div>
         </div>
@@ -25,20 +29,42 @@ Kalendaru - Реєстрація
             <div class="notes">
                 <h3>Ваші нотатки</h3>
                 <div class="notes-content">
-                    <h4>Ще немає нотаток</h4>
+                    {% comment %} <h4>Ще немає нотаток</h4> {% endcomment %}
+                    {% for note in notes %}
+                        <div class="note">
+                            <h5 class='noteName'>{{ note.name }}</h5>
+                            <h6 class='noteDate'>{{ note.date_added }}</h6>
+                            <input type="hidden" class='noteDesc' value="{{ note.description }}">
+                            <input type="hidden" class='noteAction' value="{{ note.action }}">
+                        </div>
+                    {% endfor %}
+                    
                 </div>
             </div>
             <div class="tasks">
-                <h3>Ваші нотатки</h3>
+                <h3>Завдання</h3>
                 <div class="tasks-content">
-                    <div class="task">
-                        <h3>Треба виконати</h3>
-                        <h4>Ще немає завдань</h4>
-                    </div>
-                    <div class="done">
-                        <h3>Виконано</h3>
-                        <h4>Ще немає виконаних</h4>
-                    </div>
+                    {% for task in tasks %}
+                        {% if not task.hascompleted %}
+                            <div class="task" style="background: #72F0F3;">
+                                <h5>{{ task.name }}</h5>
+                                <h6>До {{ task.date_added }}</h6>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="done-tasks">
+                <h3>Виконані завдання</h3>
+                <div class="done-tasks-content">
+                    {% for task in tasks %}
+                        {% if task.hascompleted %}
+                            <div class="task" style="background: #FFDE66;">
+                                <h5>{{ task.name }}</h5>
+                                <h6>До {{ task.date_added }}</h6>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
                 </div>
             </div>
         </div>

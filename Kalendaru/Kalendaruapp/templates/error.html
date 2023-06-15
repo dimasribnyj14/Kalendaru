@@ -1,0 +1,19 @@
+{% extends "base/base.html" %}
+{% load static %}
+
+{% block title %}
+Kalendaru - Помилка
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/error.css' %}">
+{% endblock %}
+
+{% block content %}
+    <img class='logo' src="{% static 'img/logo-loading.gif' %}" alt="#">
+    <p id="errorSite"></p>
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'js/signup.js' %}" defer></script>
+{% endblock %}

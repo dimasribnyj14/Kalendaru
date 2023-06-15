@@ -28,6 +28,7 @@ urlpatterns = [
     path('tasks',tasks, name='tasks'),
     path('profile',profile, name='profile'),
     path('notes',notes, name='notes'),
+    path('error',error,name='error')
 ]
 if DEBUG:
     urlpatterns += static(MEDIA_URL, document_root = MEDIA_ROOT)

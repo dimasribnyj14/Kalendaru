@@ -2,60 +2,137 @@
 {% load static %}
 
 {% block title %}
-Kalendaru - Реєстрація
+Kalendaru - Завдання
 {% endblock %}
 
 {% block css %}
-<link rel="stylesheet" href="{% static 'css/signup.css' %}">
+<link rel="stylesheet" href="{% static 'css/tasks.css' %}">
+{% endblock %}
+
+{% block modal %}
+    <div class="close-modal-window"></div>
+    <form method="POST" class="add-task-modal" style="display: none;">
+        {% csrf_token %}
+        <div class="input">
+            <h3>Назва</h3>
+            <input class="input" required type="text" name="name" placeholder="Назва">
+        </div>
+        <div class="input">
+            <h3>Подія</h3>
+            <div class="event">
+                {% comment %} <input class="input" required type="text" name="event" placeholder="Подія"> {% endcomment %}
+                <select class="form-select input" aria-label="tasks" name="event">
+                <option selected value="1">Завдання</option>
+                <option value="2">Нотаток</option>
+                <option value="3">Свято</option>
+                <option value="4">Інша подія</option>
+                </select>
+            </div>
+        </div>
+        <div class="input">
+            <h3>Опис</h3>
+            <textarea class="textarea-message" required name="description" cols="83" rows="5" placeholder="Опис"></textarea>
+        </div>
+        <div class="input">
+            <h3>Виконати до</h3>
+            <input class="input date-input" required type="date" name="date" placeholder="Дата">
+        </div>
+        <button class="add-task">Створити завдання</button>
+    </form>
 {% endblock %}
 
 {% block content %}
+    {% if not user.is_authenticated %}
+        <div class='no-account'>
+            <img src="{% static 'img/alert.svg' %}" alt="#" style='-webkit-user-drag: none;'>
+            <h4 style='padding-top: 10px;'>У вас немає облікового запису, щоб створювати завдання</h4>
+        </div>
+    {% endif %}
     <div class="tasks">
-        <h2>Нотатки</h2>
+        <div class="text-tasks-buttons">
+            <h2>Завдання</h2>
+            <input type="image" class="done-button" src="{% static 'img/check-circle.svg' %}"/>
+            <input type="image" class="undone-button" src="{% static 'img/uncheck-circle.svg' %}"/>
+        </div>
+        
         <div class="task-content">
             <div class="task-list">
-                <div class="task">
-                    <h3>Треба виконати</h3>
-                    <h4>Ще немає завдань</h4>
+                <div style="width: 100%;display: flex;flex-direction: column;gap: 5px;">
+                    <h3 class="undone-scroll">Треба виконати</h3>
+                    {% for task in tasks %}
+                        {% if not task.hascompleted %}
+                            <div class="task" style="background: #72F0F3;">
+                                <div class="text-close">
+                                    <h5 class='taskName'>{{ task.name }}</h5>
+                                    <form action="{% url 'tasks' %}" method="POST">
+                                        {% csrf_token %}
+                                        <input type='image' src="{% static 'img/check-circle.svg' %}" class="remove-task">
+                                        <input type="hidden" name='completed' value='{{ task.pk }}'>
+                                    </form>
+                                </div>
+                                <h6>До <span class='taskDate'>{{ task.date_added }}</span></h6>
+                                <input type="hidden" class='taskDesc' value="{{ task.description }}">
+                                <input type="hidden" class='taskAction' value="{{ task.action }}">
+                            </div>
+                        {% endif %}
+                    {% endfor %}
                 </div>
-                <div class="done">
-                    <h3>Виконано</h3>
-                    <h4>Ще немає виконаних</h4>
+                <div class="done" style="width: 100%;display: flex;flex-direction: column;gap: 5px;">
+                    <h3 class="done-scroll">Виконано</h3>
+                    {% for task in tasks %}
+                        {% if task.hascompleted %}
+                            <div class="task" style="background: #FFDE66;">
+                                <div class="text-close">
+                                    <h5 class='taskName'>{{ task.name }}</h5>
+                                    <form action="{% url 'tasks' %}" method="POST">
+                                        {% csrf_token %}
+                                        <input type='image' src="{% static 'img/delete.svg' %}" class="remove-task">
+                                        <input type="hidden" name='removeTask' value='{{ task.pk }}'>
+                                    </form>
+                                </div>
+                                <h6>До <span class='taskDate'>{{ task.date_added }}</span></h6>
+                                <input type="hidden" class='taskDesc' value="{{ task.description }}">
+                                <input type="hidden" class='taskAction' value="{{ task.action }}">
+                            </div>
+                        {% endif %}
+                    {% endfor %}
                 </div>
             </div>
+            <button class="add-task-button">Створити завдання</button>
             <div class="task-description">
-                <div class="input">
-                    <h3>Назва</h3>
-                    <input class="input" required type="text" name="name" placeholder="Назва">
-                </div>
-                <div class="input">
-                    <h3>Подія</h3>
-                    <input class="input" required type="text" name="event" placeholder="Подія">
-                    <div class="dropdown">
-                      <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Подія
-                      </button>
-                      <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Завдання</a></li>
-                        <li><a class="dropdown-item" href="#">Свято</a></li>
-                        <li><a class="dropdown-item" href="#">Інша подія</a></li>
-                      </ul>
+                <form method="POST" style="height: 100%;display: flex;flex-direction: column;justify-content: space-between;">
+                    {% csrf_token %}
+                    <div class="input">
+                        <h3>Назва</h3>
+                        <input class="input inputTaskName" required type="text" name="name" placeholder="Назва">
                     </div>
-                </div>
-                <div class="input">
-                    <h3>Опис</h3>
-                    <textarea class="textarea-message" required name="description" cols="30" rows="10" placeholder="Опис"></textarea>
-                </div>
-                <div class="input">
-                    <h3>Виконати до</h3>
-                    <input class="input" required type="text" name="date" placeholder="Дата">
-                </div>
-                <button class="add-task">Створити завдання</button>
+                    <div class="input">
+                        <h3>Подія</h3>
+                        <div class="event">
+                            {% comment %} <input class="input" required type="text" name="event" placeholder="Подія"> {% endcomment %}
+                            <select class="form-select input inputTaskAction" aria-label="tasks" name="event">
+                            <option selected value="1">Завдання</option>
+                            <option value="2">Нотаток</option>
+                            <option value="3">Свято</option>
+                            <option value="4">Інша подія</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="input">
+                        <h3>Опис</h3>
+                        <textarea class="textarea-message inputTaskDesc"  required name="description" cols="83" rows="5" placeholder="Опис"></textarea>
+                    </div>
+                    <div class="input">
+                        <h3>Виконати до</h3>
+                        <input class="input date-input inputTaskDate" required type="date" name="date" placeholder="Дата">
+                    </div>
+                    <button class="add-task">Створити завдання</button>
+                </form>
             </div>
         </div>     
     </div>
 {% endblock %}
 
 {% block js %}
-<script src="{% static 'js/signup.js' %}" defer></script>
+<script src="{% static 'js/tasks.js' %}" defer></script>
 {% endblock %}

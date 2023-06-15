@@ -10,7 +10,12 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     {% block css %}{% endblock %}
 </head>
-<body style="background-image: url('{% static "img/background.png" %}');">
+<body style="background-image: url('{% static "img/background.svg" %}');">
+    {% block modal %}
+    {% endblock %}
+    {% comment %} <div class="loading" style="background-image: url('{% static "img/background.svg" %}');">
+        <img class='logoLoading logokalendaruk_2' src="{% static 'img/logo-loading.gif' %}" alt="#">
+    </div> {% endcomment %}
     <div class="main">
         {% block content %}
         {% endblock %}
@@ -33,17 +38,24 @@
                 <div class="img-text tasks-kalendaru">
                     <a class='enter'href="{% url 'tasks' %}">
                         <img class = 'buttons tasks-button' src="{% static 'img/check-square.svg' %}" alt="IMG has not loaded :(">
-                        <h3 class="text-buttons tasks-button">Події</h3>
+                        <h3 class="text-buttons tasks-button">Завдання</h3>
                     </a>
                 </div>
             </div>
             <div class="lower">
                 <div class="img-text login-kalendaru">
                     {% if user.is_authenticated %}
+                            {% if avatar.avatar %}
                             <a class='enter'href="{% url 'profile' %}">
-                                <img class = 'buttons login-button avatar' src="{% static 'img/noavatar.png' %}" alt="IMG has not loaded :(">
+                                <img class = 'buttons login-button avatar' src="{{ avatar.avatar.url }}" alt="IMG has not loaded :("> {% comment %} {% static 'img/noavatar.png' %} {% endcomment %}
                                 <h3 class="text-buttons login-button">{{ user.username }}</h3>
                             </a>
+                            {% else %}
+                            <a class='enter'href="{% url 'profile' %}">
+                                <img class = 'buttons login-button avatar' src="{% static 'img/noavatar.png' %}" alt="IMG has not loaded :("> {% comment %} {% static 'img/noavatar.png' %} {% endcomment %}
+                                <h3 class="text-buttons login-button">{{ user.username }}</h3>
+                            </a>
+                            {% endif %}
                     {% else %}
                             <a class='enter' href="{% url 'login' %}">
                                 <img class = 'buttons login-button' src="{% static 'img/log-in.svg' %}" alt="IMG has not loaded :(">
@@ -76,7 +88,8 @@
   integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
   crossorigin="anonymous" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>
+    <script src='https://stevenlevithan.com/assets/misc/date.format.js'></script>
     {% block js %}{% endblock %}
     
 </body>
