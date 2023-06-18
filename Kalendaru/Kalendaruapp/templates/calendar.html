@@ -62,7 +62,7 @@ Kalendaru - Календар
             <input type="hidden" class='actionPk' value="{{ action.pk }}">
             <input type="hidden" class='actionName' value="{{ action.name }}">
             <input type="hidden" class='actionDate' value="{{ action.date }}">
-            <input type="hidden" class='actionEvent' value="{{ action.action }}">
+            <input type="hidden" class='actionEvent' value="{{ action.actions }}">
             <input type="hidden" class='actionDesc' value="{{ action.description }}">
             <input type="hidden" class='actionKalendaru' value="{{ action.iskalendaru }}">
             <input type="hidden" class='actionOfficial' value="{{ action.isofficial }}">
@@ -138,7 +138,7 @@ Kalendaru - Календар
         <div class="calendar-right">
             {% comment %} Здесь Прохор пишет {% endcomment %}
             {% comment %} <p>На цей день нічого не заплановано</p> {% endcomment %}
-            <h5 class="area-name"></h5>
+            <h4 class="area-name"></h4>
             <div class="area-date">
 
             </div>
@@ -148,8 +148,14 @@ Kalendaru - Календар
             <div class="area-desc">
 
             </div>
-            <button class="text-button">Відзначити, як виконане</button>
-            <button class="text-button">Видалити</button>
+            <form action="{% url 'calendar' %}" method="POST" class="form-buttons">
+                {% csrf_token %}
+                <input type="hidden" name="pkForm" class='pkForm'>
+                <input type="hidden" name="taskornote" class="taskornote">
+                <button class="text-button button-cal" name="make-completed">Відзначити, як виконане</button>
+                <button class="text-button button-cal" name="remove">Видалити</button>
+            </form>
+
         </div>
     </div>
 {% endblock %}

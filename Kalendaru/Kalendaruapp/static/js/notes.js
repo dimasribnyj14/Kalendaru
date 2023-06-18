@@ -3,7 +3,7 @@ let inputNoteName = document.querySelectorAll('.inputNoteName')
 let inputNoteAction = document.querySelectorAll('.inputNoteAction')
 let inputNoteDesc = document.querySelectorAll('.inputNoteDesc')
 let inputNoteDate = document.querySelectorAll('.inputNoteDate')
-console.log($(".remove-note").attr('name'))
+let inputDeleteNote = document.querySelectorAll('.remove-note')
 buttonsNote.forEach(function (buttonNote, index, buttonsNote) {
     buttonNote.addEventListener('click', function () {
         let close = buttonNote.closest('div');
@@ -55,4 +55,25 @@ buttonClose.addEventListener('click', function (event) {
     coverdiv.style.opacity = 0;
     modalWindow.style.opacity = 0;
     setTimeout(function () { modalWindow.style.display = 'none'; coverdiv.remove(); }, 200)
+})
+let notePK
+inputDeleteNote.forEach(function (note, index, inputDeleteNote) {
+    note.addEventListener('click', function () {
+        notePK = note
+    })
+})
+$(document).ready(function () {
+
+    $('.formDeleteNote').on('submit', function (event) {
+        event.preventDefault();
+        $.ajax({
+            type: "POST",
+            url: $(this).action,
+            data: $(this).serialize(),
+            success: function (response) {
+
+            }
+        });
+        $(`#${notePK.value}`).remove()
+    })
 })

@@ -509,7 +509,7 @@
 
         position: absolute;
         width: 90%;
-        height: 75%;
+        /* height: 75%; */
         z-index: 9999;
         opacity: 0;
         transition-duration: 200ms;
@@ -575,6 +575,18 @@
         border: 1px solid #000000;
         border-radius: 30px;
 
+    }
+
+    .no-account {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 10px;
+        gap: 10px;
+        position: absolute;
+        width: 90%;
+        background: #FFC107;
+        border-radius: 20px;
     }
 }
 

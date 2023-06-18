@@ -5,6 +5,7 @@ let inputNoteName = document.querySelector('.inputTaskName')
 let inputNoteAction = document.querySelector('.inputTaskAction')
 let inputNoteDesc = document.querySelector('.inputTaskDesc')
 let inputNoteDate = document.querySelector('.inputTaskDate')
+let inputDeleteTask = document.querySelectorAll('.remove-task')
 console.log($(".remove-note").attr('name'))
 buttonsNote.forEach(function (buttonNote, index, buttonsNote) {
     buttonNote.addEventListener('click', function () {
@@ -63,4 +64,27 @@ buttonClose.addEventListener('click', function (event) {
     coverdiv.style.opacity = 0;
     modalWindow.style.opacity = 0;
     setTimeout(function () { modalWindow.style.display = 'none'; coverdiv.remove(); }, 200)
+})
+
+let taskPK
+inputDeleteTask.forEach(function (task, index, inputDeleteTask) {
+    task.addEventListener('click', function () {
+        taskPK = task
+        console.log(taskPK.value)
+    })
+})
+$(document).ready(function () {
+
+    $('.formDeleteTask').on('submit', function (event) {
+        event.preventDefault();
+        $.ajax({
+            type: "POST",
+            url: $(this).action,
+            data: $(this).serialize(),
+            success: function (response) {
+
+            }
+        });
+        $(`#${taskPK.value}`).remove()
+    })
 })

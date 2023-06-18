@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from Kalendaruapp.models import *
 from django.core.mail import send_mail
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from datetime import date
 from django.contrib.auth.models import User
 from django.db import IntegrityError
@@ -21,13 +21,14 @@ def sign_in(request):
 
         user = authenticate(request, username = username, password = password)
         if user != None:
-            login(request, user)
-            context["error_text"] = ""
-            return redirect('calendar')
-        elif User.objects.get(username=username).is_active == False:
-            context["error_text"] = "Сталася помилка! Цей обліковий запис був вимкнений!"
+            if User.objects.get(username=username).is_active == False:
+                context["error_text"] = "Виникла помилка! Цей обліковий запис був вимкнений!"
+            else:
+                login(request, user)
+                context["error_text"] = ""
+                return redirect('calendar')
         else:
-            context["error_text"] = "Сталася помилка! Пошта або пароль не співпадають!"
+            context["error_text"] = "Виникла помилка! Пошта або пароль не співпадають!"
         
     return render(request, "signin.html", context)
 
@@ -57,9 +58,9 @@ def sign_up(request):
             context["error_text"] = ""
             return redirect('login')
         except IntegrityError:
-            context['error_text'] = 'Сталася помилка! Такі дані користувача вже існує!'
+            context['error_text'] = 'Виникла помилка! Такі дані користувача вже існує!'
         except:
-            context['error_text'] = 'Сталася помилка! Спробуйте ще раз!'
+            context['error_text'] = 'Виникла помилка! Спробуйте ще раз!'
     return render(request, "signup.html",context)
 
 def support(request):
@@ -104,14 +105,29 @@ def options(request):
                     user.save()
                     return redirect('login')
                 else:
-                    context['error_text'] = 'Сталася помилка! Ви не можете вимкнути супер користувача!'
+                    context['error_text'] = 'Виникла помилка! Ви не можете вимкнути супер користувача!'
             else:
-                context['error_text'] = 'Сталася помилка! Пароль неправильний!'
+                context['error_text'] = 'Виникла помилка! Пароль неправильний!'
         elif request.FILES.get('change_avatar') != None:
             print(request.FILES.get('change_avatar'))
             avatar = UserProfile.objects.get(user=request.user.pk)
             avatar.avatar = request.FILES.get('change_avatar')
             avatar.save()
+        elif request.POST.get("change_password") != None:
+            if check_password(request.POST.get('passwordModalOld'), request.user.password):
+                new = request.POST.get('passwordModalNew')
+                # user = User.objects.get(username=request.user.username)
+                # user.password = new
+                # user.save()
+                request.user.set_password(new)
+                request.user.save()
+                update_session_auth_hash(request, request.user) 
+                # form = PasswordChangeForm(request.user, request.POST)
+                # if form.is_valid():
+                #     user = form.save()
+                return redirect('options')
+            else:
+                context['error_text'] = 'Виникла помилка! Пароль неправильний!'
         else:
             print(request.POST)
         
@@ -207,6 +223,23 @@ def calendar(request):
         context={
             'actions':Actions.objects.all()
         }
+    if request.method == 'POST':
+        if request.POST.get('make-completed') != None:
+            pkTask = request.POST.get('pkForm')
+            task = Tasks.objects.get(pk=pkTask)
+            task.hascompleted = True
+            task.save()
+        elif request.POST.get('remove') != None:
+            pkObject = request.POST.get('pkForm')
+            classObject = request.POST.get('taskornote')
+            if classObject == "task-info":
+                task = Tasks.objects.get(pk=pkObject)
+                task.delete()
+            elif classObject == "note-info":
+                note = Notes.objects.get(pk=pkObject)
+                note.delete()
+            else:
+                print(classObject)
     return render(request, "calendar.html",context)
 
 def error(request):

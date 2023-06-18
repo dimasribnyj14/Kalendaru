@@ -86,7 +86,7 @@ if (window.matchMedia("(max-width: 700px)").matches == false) {
                 iconButton.style.transitionDuration = "400ms"
             })
             document.querySelectorAll('.text-buttons').forEach(function (textButton, index, textButtons) {
-                textButton.style.transitionDuration = "400ms"
+                textButton.style.transitionDuration = ""
             })
         }, 1)
     }

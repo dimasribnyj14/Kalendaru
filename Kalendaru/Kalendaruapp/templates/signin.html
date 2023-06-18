@@ -14,8 +14,8 @@ Kalendaru - Вхід
         <h1>Вхід</h1>
         <form method="POST" id="form-signin">
             {% csrf_token %}
-            <input class="input" type="username" required name="username" placeholder="Логін">
-            <input class="input" type="password" required name="password" placeholder="Пароль">
+            <input class="input" type="username" required name="username" id='login' placeholder="Логін">
+            <input class="input" type="password" required name="password" id='password' placeholder="Пароль">
 
             <div class="buttons-signin"> 
                 <button class="button-signin">Увійти</button>
@@ -134,6 +134,6 @@ Kalendaru - Вхід
         </div>
 {% endblock %}
 
-{% block js %}
+{% comment %} {% block js %}
 <script src="{% static 'js/signin.js' %}" defer></script>
-{% endblock %}
+{% endblock %} {% endcomment %}

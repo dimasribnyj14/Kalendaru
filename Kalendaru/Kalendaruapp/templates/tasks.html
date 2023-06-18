@@ -22,10 +22,10 @@ Kalendaru - Завдання
             <div class="event">
                 {% comment %} <input class="input" required type="text" name="event" placeholder="Подія"> {% endcomment %}
                 <select class="form-select input" aria-label="tasks" name="event">
-                <option selected value="1">Завдання</option>
-                <option value="2">Нотаток</option>
-                <option value="3">Свято</option>
-                <option value="4">Інша подія</option>
+                <option selected value="Завдання">Завдання</option>
+                <option value="Нотаток">Нотаток</option>
+                <option value="Свято">Свято</option>
+                <option value="Інша подія">Інша подія</option>
                 </select>
             </div>
         </div>
@@ -64,7 +64,7 @@ Kalendaru - Завдання
                             <div class="task" style="background: #72F0F3;">
                                 <div class="text-close">
                                     <h5 class='taskName'>{{ task.name }}</h5>
-                                    <form action="{% url 'tasks' %}" method="POST">
+                                    <form action="{% url 'tasks' %}" method="POST" >
                                         {% csrf_token %}
                                         <input type='image' src="{% static 'img/check-circle.svg' %}" class="remove-task">
                                         <input type="hidden" name='completed' value='{{ task.pk }}'>
@@ -81,12 +81,12 @@ Kalendaru - Завдання
                     <h3 class="done-scroll">Виконано</h3>
                     {% for task in tasks %}
                         {% if task.hascompleted %}
-                            <div class="task" style="background: #FFDE66;">
+                            <div class="task" style="background: #FFDE66;" id="{{ task.pk }}">
                                 <div class="text-close">
                                     <h5 class='taskName'>{{ task.name }}</h5>
-                                    <form action="{% url 'tasks' %}" method="POST">
+                                    <form action="{% url 'tasks' %}" method="POST" class="formDeleteTask">
                                         {% csrf_token %}
-                                        <input type='image' src="{% static 'img/delete.svg' %}" class="remove-task">
+                                        <input type='image' src="{% static 'img/delete.svg' %}" class="remove-task" value="{{ task.pk }}">
                                         <input type="hidden" name='removeTask' value='{{ task.pk }}'>
                                     </form>
                                 </div>
@@ -111,10 +111,10 @@ Kalendaru - Завдання
                         <div class="event">
                             {% comment %} <input class="input" required type="text" name="event" placeholder="Подія"> {% endcomment %}
                             <select class="form-select input inputTaskAction" aria-label="tasks" name="event">
-                            <option selected value="1">Завдання</option>
-                            <option value="2">Нотаток</option>
-                            <option value="3">Свято</option>
-                            <option value="4">Інша подія</option>
+                            <option selected value="Завдання">Завдання</option>
+                            <option value="Нотаток">Нотаток</option>
+                            <option value="Свято">Свято</option>
+                            <option value="Інша подія">Інша подія</option>
                             </select>
                         </div>
                     </div>

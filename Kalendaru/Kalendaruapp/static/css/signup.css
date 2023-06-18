@@ -104,8 +104,7 @@ CSK - #27E9EC/100
         width: 100%;
         text-align: center;
         height: 100%;
-        color: #000000;
-        text-decoration: none;
+
         /* CSK - #27E9EC/600
     
     CSK - #27E9EC/600
@@ -138,6 +137,7 @@ CSK - #27E9EC/100
         /* padding: 12px 0px 0px 0px; */
         line-height: 100%;
         font-size: 13px;
+        margin-top: -3px;
     }
 }
 
@@ -263,5 +263,6 @@ CSK - #27E9EC/100
         /* padding: 12px 0px 0px 0px; */
         line-height: 100%;
         font-size: 13px;
+        margin-top: -3px;
     }
 }

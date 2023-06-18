@@ -11,17 +11,30 @@ Kalendaru - Опції
 {% block modal %}
     <div class="modalDelete">
         <p style="margin-bottom: 0rem;">Для видалення облікового запису треба написати пароль</p>
-        <form method="POST" class="modalDeleteDiv">
+        <form method="POST" class="modalDeleteDiv" action="{% url 'login' %}">
             {% csrf_token %}
-            <input type="text" class='passwordModalDelete' name='passwordModalDelete' placeholder="Пароль">
-            <p style='color: #A51C1C;margin-bottom: 0rem; text-align: center;'>{{ error_text }}</p>
+            <input type="password" class='passwordModalDelete' name='passwordModalDelete' placeholder="Пароль" required>
+            
             <div class="buttons-modal-delete">
                 <button class="button-modal-delete button-delete" name='delete_user'>Видалити</button>
-                <button class="button-modal-delete button-no-delete">Не видаляти</button>
+                <a type='button' href="#" class="button-modal-delete button-no-delete">Не видаляти</a>
+            </div>
+        </form>
+    </div>
+    <div class="modalChange">
+        <p style="margin-bottom: 0rem;">Напишіть новий пароль</p>
+        <form method="POST" class="modalDeleteDiv modalChangePass" style='gap: 5px;'>
+            {% csrf_token %}
+            <input type="password" class='passwordModalDelete' name='passwordModalOld' placeholder="Старий Пароль" required>
+            <input type="password" class='passwordModalDelete' name='passwordModalNew' placeholder="Новий Пароль" required>
+            <div class="buttons-modal-delete">
+                <button class="button-modal-delete button-delete" name='change_password'>Змінити</button>
+                <a type="button" class="button-modal-delete button-not-change button-no-delete">Не змінювати</a>
             </div>
         </form>
     </div>
 {% endblock %}
+
 {% block content %}
 
     <div class="options">
@@ -72,10 +85,11 @@ Kalendaru - Опції
                                     <h5 class="text"><strong>Ім’я: <span class="name" style="color: #3E3E3E">{{ user.username }}</span></strong> {% comment %}<img src="{% static 'img/edit.svg' %}" class='edit' alt="#">{% endcomment %}</h5>
                                     <h5 class="text"><strong>Електронна пошта: <span class="email" style="color: #3E3E3E">{{ user.email }}</span></strong> {% comment %}<img src="{% static 'img/edit.svg' %}" class='edit' alt="#">{% endcomment %}</h5> 
                                     <h5 class="text"><strong>Дата створення облікового запису: <span class="date" style="color: #3E3E3E">{{ user.date_joined }}</span></strong></h5>
+                                    <p style='color: #A51C1C;margin-bottom: 0rem;'>{{ error_text }}</p>
                                 </div>
                             </div>
 
-                            <button class="button-profile">Змінити пароль</button>
+                            <button class="button-profile change-password">Змінити пароль</button>
                         
 
                     </div>
@@ -104,7 +118,7 @@ Kalendaru - Опції
 
                     Дата набрання чинності: 02.06.2023
                     
-                    Дякуємо за користування Kalendaru! У цій Політиці конфіденційності описано типи особистої інформації, яку ми збираємо, як ми використовуємо та захищаємо цю інформацію, коли ви використовуєте наш сайт Kalendaru, а також вибір, який ви маєте щодо ваших особистих даних.
+                    <p>Дякуємо за користування Kalendaru! У цій Політиці конфіденційності описано типи особистої інформації, яку ми збираємо, як ми використовуємо та захищаємо цю інформацію, коли ви використовуєте наш сайт Kalendaru, а також вибір, який ви маєте щодо ваших особистих даних.</p>
                     
                     <h4>1. Інформація, яку ми збираємо:</h4>
                     

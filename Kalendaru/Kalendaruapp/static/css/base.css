@@ -43,7 +43,7 @@ body {
         gap: 10px;
         justify-content: center;
         position: absolute;
-        width: 2.5%;
+        width: 50px;
         height: 100%;
         left: 0px;
         top: 0px;
@@ -107,7 +107,7 @@ body {
     } */
 
     .side-main.hover {
-        width: 10%;
+        width: 190px;
     }
 
     /* .side-main:hover .icons {
@@ -148,7 +148,8 @@ body {
         align-items: center;
         cursor: pointer;
         user-select: none;
-        transition-duration: 400ms;
+        transition-duration: 50ms;
+
     }
 
     /* .side-main:hover .text-buttons {
@@ -158,6 +159,8 @@ body {
     } */
 
     .text-buttons.hovertext {
+        transition-duration: 400ms;
+        transition-delay: 150ms;
         display: block;
         transform: translateX(1px);
         opacity: 1;

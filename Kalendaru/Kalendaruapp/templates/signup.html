@@ -14,9 +14,9 @@ Kalendaru - Реєстрація
         <h1>Реєстрація</h1>
         <form method="POST" id="form-signin">
             {% csrf_token %}
-            <input class="input" required type="text" name="nickname" placeholder="Логін">
-            <input class="input" required type="email" name="email" placeholder="Електронна пошта">
-            <input class="input" required type="password" name="password" placeholder="Пароль">
+            <input class="input" required type="text" name="nickname" id='login' placeholder="Логін">
+            <input class="input" required type="email" name="email" id='email' placeholder="Електронна пошта">
+            <input class="input" required type="password" name="password" id='password' placeholder="Пароль">
             
             <input type="file" style="display: none;" name="avatar" value="{% static 'img/noavatar.png' %}">
             <div class="checkbox">
@@ -27,20 +27,22 @@ Kalendaru - Реєстрація
                     <label class="form-check-label" for="flexSwitchCheckDefault">Я погоджуюсь з умовами положення про та угодою користувача</label>
                 </div> {% endcomment %}
                 <div class="form-check form-switch">
-                  <input class="form-check-input" type="checkbox" name='checkbox' required role="switch" id="flexSwitchCheckDefault">
+                  <input class="form-check-input" type="checkbox" name='checkbox' required role="switch" id="flexSwitchCheckDefault checkbox">
                   {% comment %} <label class="form-check-label" for="flexSwitchCheckDefault">Я погоджуюсь з політикою конфіденційності про та умовою використання Kalendaru</label> {% endcomment %}
                     <p class="agree">Я погоджуюсь з політикою конфіденційності про та умовою використання Kalendaru</p>
                 </div>
             </div>
             <div class="buttons-signup">
                 <button class="button-signup">Зареєструватися</button>
-                <a href="{% url 'login' %}" class="button-signup">Вхід</a>
+                <a href="{% url 'login' %}" class="button-signup" style='color: #000000;text-decoration: none;'>Вхід</a>
             </div>
-            <p style='color: #A51C1C'>{{ error_text }}</p>
+            
         </form>
+        
     </div>
+    <p style='color: #A51C1C'>{{ error_text }}</p>
 {% endblock %}
 
-{% block js %}
+{% comment %} {% block js %}
 <script src="{% static 'js/signup.js' %}" defer></script>
-{% endblock %}
+{% endblock %} {% endcomment %}

@@ -136,10 +136,12 @@
 
     .policy-content {
         overflow-y: scroll;
+        margin-top: -1%;
     }
 
     .terms-content {
         overflow-y: scroll;
+        margin-top: -1%;
     }
 
     .content-option::-webkit-scrollbar {
@@ -256,7 +258,8 @@
         height: 25%;
     }
 
-    .modalDelete {
+    .modalDelete,
+    .modalChange {
         display: none;
         flex-direction: column;
         justify-content: center;
@@ -352,6 +355,9 @@
 
     .button-no-delete {
         background: #11B9BB;
+        text-align: center;
+        text-decoration: none;
+        color: #000000;
     }
 
     .button-no-delete:hover {
@@ -488,10 +494,12 @@
 
     .policy-content {
         overflow-y: scroll;
+        margin-top: -1%;
     }
 
     .terms-content {
         overflow-y: scroll;
+        margin-top: -1%;
     }
 
     .content-option::-webkit-scrollbar {
@@ -607,7 +615,8 @@
         width: 100%;
     }
 
-    .modalDelete {
+    .modalDelete,
+    .modalChange {
         display: none;
         flex-direction: column;
         justify-content: center;

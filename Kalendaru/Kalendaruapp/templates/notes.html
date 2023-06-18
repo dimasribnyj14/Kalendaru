@@ -22,10 +22,10 @@ Kalendaru - Нотатки
             <div class="event">
                 {% comment %} <input class="input" required type="text" name="event" placeholder="Подія"> {% endcomment %}
                 <select class="form-select input inputNoteAction" aria-label="notes" name="event">
-                <option value="1">Завдання</option>
-                <option selected value="2">Нотаток</option>
-                <option value="3">Свято</option>
-                <option value="4">Інша подія</option>
+                <option value="Завдання">Завдання</option>
+                <option selected value="Нотаток">Нотаток</option>
+                <option value="Свято">Свято</option>
+                <option value="Інша подія">Інша подія</option>
                 </select>
             </div>
         </div>
@@ -54,13 +54,13 @@ Kalendaru - Нотатки
         <div class="notes-content">
             <div class="days">
                 {% for note in notes %}
-                    <div class="note">
+                    <div class="note" id="{{ note.pk }}">
                         <div class="text-close">
                             <h5 class='noteName'>{{ note.name }}</h5>
-                            <form action="{% url 'notes' %}" method="POST">
+                            <form action="{% url 'notes' %}" method="POST" class="formDeleteNote">
                                 {% csrf_token %}
-                                <input type='image' src="{% static 'img/delete.svg' %}" class="remove-note" value='{{ note.name }}'>
-                                <input type="hidden" name='pknote' value='{{ note.pk }}'>
+                                <input type='image' src="{% static 'img/delete.svg' %}" class="remove-note" value='{{ note.pk }}'>
+                                <input type="hidden" name='pknote' class="pkNoteDelete"  value='{{ note.pk }}'>
                             </form>
                         </div>
                         <h6 class='noteDate'>{{ note.date_added }}</h6>
@@ -83,10 +83,10 @@ Kalendaru - Нотатки
                         <div class="event">
                             {% comment %} <input class="input" required type="text" name="event" placeholder="Подія"> {% endcomment %}
                             <select class="form-select input inputNoteAction" aria-label="notes" name="event">
-                              <option value="1">Завдання</option>
-                              <option selected value="2">Нотаток</option>
-                              <option value="3">Свято</option>
-                              <option value="4">Інша подія</option>
+                              <option value="Завдання">Завдання</option>
+                              <option selected value="Нотаток">Нотаток</option>
+                              <option value="Свято">Свято</option>
+                              <option value="Інша подія">Інша подія</option>
                             </select>
                         </div>
                     </div>
