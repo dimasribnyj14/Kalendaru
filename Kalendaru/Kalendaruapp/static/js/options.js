@@ -72,6 +72,18 @@ $("#input-file").change(function () {
     // }, 500)
 
 });
+let otherCheckboxes = document.querySelectorAll('.otherCheckboxes')
+if (localStorage.getItem('PushN') == 'true') {
+    otherCheckboxes.forEach(function (otherCheckbox, index, otherCheckboxes) {
+        otherCheckbox.removeAttribute('disabled')
+    })
+    // localStorage.setItem('PushN', 'true')
+} else {
+    otherCheckboxes.forEach(function (otherCheckbox, index, otherCheckboxes) {
+        otherCheckbox.setAttribute('disabled', 'true')
+    })
+    // localStorage.setItem('PushN', 'false')
+}
 let buttonClose = document.querySelector('.button-no-delete');
 let buttonOpen = document.querySelector('.delete-button')
 let modalWindow = document.querySelector('.modalDelete')
@@ -109,14 +121,51 @@ buttonClose.addEventListener('click', function (event) {
 notDelete.addEventListener('click', function (event) {
     return false;
 })
-$('.form-check-input').on("click", requestPermission)
-$('.form-check-input').on("click", function () {
-    if (localStorage.getItem('PushN') == 'false') {
+$('.main-notification').on("click", requestPermission)
+$('.main-notification').on("click", function () {
+    if (document.getElementById('main-notification').checked) {
+        console.log("wok")
         localStorage.setItem('PushN', 'true')
     } else {
+        console.log("woked")
         localStorage.setItem('PushN', 'false')
     }
+    if (localStorage.getItem('PushN') == 'true') {
+        otherCheckboxes.forEach(function (otherCheckbox, index, otherCheckboxes) {
+            otherCheckbox.removeAttribute('disabled')
+        })
+        // localStorage.setItem('PushN', 'true')
 
+    } else {
+        otherCheckboxes.forEach(function (otherCheckbox, index, otherCheckboxes) {
+            otherCheckbox.setAttribute('disabled', 'true')
+        })
+        // localStorage.setItem('PushN', 'false')
+    }
+
+})
+otherCheckboxes.forEach(function (otherCheckbox, index, otherCheckboxes) {
+    otherCheckboxes[0].addEventListener('click', function () {
+        if (document.getElementById('tasks').checked) {
+            localStorage.setItem('tasks', 'true')
+        } else {
+            localStorage.setItem('tasks', 'false')
+        }
+    })
+    otherCheckboxes[1].addEventListener('click', function () {
+        if (document.getElementById('notes').checked) {
+            localStorage.setItem('notes', 'true')
+        } else {
+            localStorage.setItem('notes', 'false')
+        }
+    })
+    otherCheckboxes[2].addEventListener('click', function () {
+        if (document.getElementById('actions').checked) {
+            localStorage.setItem('actions', 'true')
+        } else {
+            localStorage.setItem('actions', 'false')
+        }
+    })
 })
 let modalWindowChange = document.querySelector('.modalChange')
 function openModalWindowChange(event) {
@@ -158,11 +207,36 @@ $('.button-not-change').on('click', function (event) {
     buttonClose.style.display = 'none'
 })
 $('.change-password').on('click', openModalWindowChange)
-$(document).ready(function () {
 
+// document.addEventListener('beforeunload', function () {
+//     if (document.getElementById('main-notification').checked) {
+//         console.log("wok")
+//         localStorage.setItem('PushN', 'true')
+//     } else {
+//         console.log("woked")
+//         localStorage.setItem('PushN', 'false')
+//     }
+// })
+$(document).ready(function () {
+    // if (document.getElementById('main-notification').checked) {
+    //     console.log("wok")
+    //     localStorage.setItem('PushN', 'true')
+    // } else {
+    //     console.log("woked")
+    //     localStorage.setItem('PushN', 'false')
+    // }
     let CheckForm = localStorage.getItem('PushN')
     if (CheckForm == 'true') {
-        $('.form-check-input').attr('checked', 'true')
+        $('.main-notification').attr('checked', 'true')
+    }
+    if (localStorage.getItem('tasks') == 'true') {
+        otherCheckboxes[0].setAttribute('checked', 'true')
+    }
+    if (localStorage.getItem('notes') == 'true') {
+        otherCheckboxes[1].setAttribute('checked', 'true')
+    }
+    if (localStorage.getItem('actions') == 'true') {
+        otherCheckboxes[2].setAttribute('checked', 'true')
     }
     $("form#change-avatar").on("submit", function (event) {
         // setTimeout(function () {

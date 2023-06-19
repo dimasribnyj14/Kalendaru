@@ -30,8 +30,8 @@
         justify-content: center;
         align-items: center;
         padding: 0px;
-        width: 60%;
-        height: 75%;
+        width: 75%;
+        height: 90%;
 
         /* CSK - #27E9EC/400
 
@@ -55,15 +55,16 @@
 
     }
 
-    .months {
+    .months,
+    .year-choice {
         display: flex;
         flex-direction: row;
         align-items: center;
         padding: 5px;
-        gap: 5px;
+        gap: 10px;
         scroll-behavior: smooth;
         width: 100%;
-        height: 10%;
+        height: 7%;
         overflow-x: scroll;
         overflow-y: hidden;
         /* CSK - #27E9EC/200
@@ -78,14 +79,37 @@
         display: none;
     }
 
+    .year-choice::-webkit-scrollbar {
+        display: none;
+    }
+
+    .days-on-week {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+        padding: 5px;
+        gap: 5px;
+        background: var(--very-bright-blue);
+        border-radius: 10px;
+        width: 100%;
+        height: 7%;
+    }
+
+    .day-week {
+        margin: auto;
+        /* border-right: 1px solid black; */
+    }
+
+
     .month {
         display: flex;
         align-items: center;
         cursor: pointer;
         justify-content: center;
         text-align: center;
-        padding-right: 10px;
-        border-right: 1px solid black;
+        /* padding-right: 10px; */
+        /* border-right: 1px solid black; */
         user-select: none;
         font-size: large;
         font-weight: bold;
@@ -96,10 +120,12 @@
         flex-direction: column;
         align-items: flex-start;
         padding: 10px;
-
+        justify-content: space-between;
         width: 100%;
-        height: 100%;
-
+        height: 75%;
+        /* display: grid;
+        grid-template-columns: repeat(5, 100%);
+        grid-template-rows: repeat(7, 100%); */
         /* CSK - #27E9EC/200
         
         CSK - #27E9EC/200
@@ -118,6 +144,17 @@
         height: 100%;
     }
 
+    .calendar-dates {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        height: 74%;
+        flex-wrap: wrap;
+        padding: 0;
+        margin: 0;
+        justify-content: center;
+    }
+
     .day {
         box-sizing: border-box;
 
@@ -128,8 +165,8 @@
         align-items: center;
         padding: 0px;
         gap: 10px;
-        width: 100%;
-        height: 100%;
+        width: 14.27%;
+        height: 20%;
         border: 1px solid #000000;
         font-weight: 600;
         transition-duration: 200ms;
@@ -148,17 +185,19 @@
         align-items: center;
         padding: 0px;
         gap: 10px;
-        width: 100%;
-        height: 100%;
         border: 1px solid #777777;
         font-weight: 600;
         font-size: xxx-large;
         color: #777777;
+        width: 14.28%;
+        height: 20%;
         user-select: none;
     }
 
     .day:hover {
-        background: var(--bright-blue)
+        background: var(--bright-blue);
+        box-shadow: inset 0px 0px 0px 1px black;
+        text-shadow: 0px 0px 2px black;
     }
 
     .day:active {
@@ -176,7 +215,7 @@
         padding: 10px;
         gap: 10px;
         width: 100%;
-        height: 60%;
+        /* height: 20%; */
 
         /* CSK - #27E9EC/400
         
@@ -363,7 +402,7 @@ CSK - #27E9EC/200
         background: #A1F5F7;
         border: 1px solid #000000;
         border-radius: 30px;
-
+        overflow-y: scroll;
         /* Inside auto layout */
         flex: none;
         align-self: stretch;
@@ -468,19 +507,17 @@ CSK - #27E9EC/200
         align-items: flex-start;
         padding: 10px;
         gap: 10px;
-
         width: 100%;
         height: 100%;
-
-
     }
 
-    .months {
+    .months,
+    .year-choice {
         display: flex;
         flex-direction: row;
         align-items: center;
         padding: 5px;
-        gap: 5px;
+        gap: 10px;
         scroll-behavior: smooth;
         width: 100%;
         height: 10%;
@@ -495,6 +532,19 @@ CSK - #27E9EC/200
         cursor: pointer;
     }
 
+    .days-on-week {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 5px;
+        gap: 5px;
+        background: var(--very-bright-blue);
+        border-radius: 10px;
+        width: 100%;
+        justify-content: space-around;
+        height: 10%;
+    }
+
     .months::-webkit-scrollbar {
         display: none;
     }
@@ -506,14 +556,13 @@ CSK - #27E9EC/200
         align-items: center;
         justify-content: center;
         text-align: center;
-        border-right: 1px solid black;
-        padding-right: 5px;
-
+        /* border-right: 1px solid black; */
+        /* padding-right: 5px; */
     }
 
     .area-desc {
         box-sizing: border-box;
-
+        overflow-y: scroll;
         /* Auto layout */
         display: flex;
         flex-direction: column;
@@ -524,7 +573,7 @@ CSK - #27E9EC/200
         width: 100%;
         background: #A1F5F7;
         border: 1px solid #000000;
-        border-radius: 30px;
+        border-radius: 10px;
 
         /* Inside auto layout */
         flex: none;
@@ -561,7 +610,7 @@ CSK - #27E9EC/200
         flex-direction: column;
         align-items: flex-start;
         padding: 10px;
-
+        justify-content: space-between;
         width: 100%;
         height: 100%;
 
@@ -583,6 +632,17 @@ CSK - #27E9EC/200
         height: 100%;
     }
 
+    .calendar-dates {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        height: 100%;
+        flex-wrap: wrap;
+        padding: 0;
+        margin: 0;
+        justify-content: center;
+    }
+
     .day {
         box-sizing: border-box;
 
@@ -596,8 +656,8 @@ CSK - #27E9EC/200
         padding: 0px;
         gap: 10px;
 
-        width: 100%;
-        height: 100%;
+        width: 14.28%;
+        height: 20%;
 
         border: 1px solid #000000;
         cursor: pointer;
@@ -605,7 +665,8 @@ CSK - #27E9EC/200
 
     .no-active-day {
         box-sizing: border-box;
-
+        /* width: 14.28%;
+        height: 20%; */
         /* Auto layout */
         display: flex;
         flex-direction: column;
@@ -613,8 +674,8 @@ CSK - #27E9EC/200
         align-items: center;
         padding: 0px;
         gap: 10px;
-        width: 100%;
-        height: 100%;
+        width: 14.28%;
+        height: 20%;
         border: 1px solid #777777;
         color: #777777;
         user-select: none;
@@ -655,7 +716,7 @@ CSK - #27E9EC/200
         gap: 10px;
 
         width: 100%;
-        height: 20%;
+        height: 11%;
 
         /* CSK - #27E9EC/400
         
@@ -675,13 +736,11 @@ CSK - #27E9EC/200
         display: flex;
         flex-direction: column;
         align-items: flex-start;
-        justify-content: center;
+        justify-content: flex-start;
         padding: 10px;
         gap: 10px;
-
         width: 100%;
-        height: 100%;
-
+        height: 50%;
     }
 
     .modalLegend {
@@ -797,6 +856,11 @@ CSK - #27E9EC/200
         flex-grow: 0;
     }
 
+    .day-week {
+        margin: auto;
+        /* border-right: 1px solid black; */
+    }
+
     .text-button:hover {
         background: var(--very-bright-blue);
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -813,6 +877,8 @@ CSK - #27E9EC/200
         gap: 10px;
         width: 100%;
     }
+
+
 
 }
 
@@ -849,4 +915,21 @@ p {
     z-index: 20;
     opacity: 0;
     transition-duration: 200ms;
+}
+
+hr {
+    border-left: 1px solid black;
+    height: 100%;
+    width: 1px;
+}
+
+h5.yearButton {
+    margin: auto;
+    cursor: pointer;
+    font-size: large;
+    transition-duration: 250ms;
+}
+
+h5:hover {
+    text-decoration: underline;
 }

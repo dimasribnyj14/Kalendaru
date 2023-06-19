@@ -9,6 +9,7 @@ Kalendaru - Календар
 <link rel="stylesheet" href="{% static 'css/calendar.css' %}">
 {% endblock %}
 {% block modal %}
+
     <div class="modalLegend" style="display: none">
         <p class="legend-title">Легенди</p>
         <div class="legend-item">
@@ -72,22 +73,61 @@ Kalendaru - Календар
 
     <div class="calendar">
         <div class="calendar-left">
+            <div class="year-choice">
+                
+           </div>
            <div class="months">
                 <div id='01' class="month jan">Січень</div>
+                <hr>
                 <div id='02' class="month feb">Лютий</div>
+                <hr>
                 <div id='03' class="month mar">Березень</div>
+                <hr>
                 <div id='04' class="month apr">Квітень</div>
+                <hr>
                 <div id='05' class="month may">Травень</div>
+                <hr>
                 <div id='06' class="month jun">Червень</div>
+                <hr>
                 <div id='07' class="month jul">Липень</div>
+                <hr>
                 <div id='08' class="month aug">Серпень</div>
+                <hr>
                 <div id='09' class="month sep">Вересень</div>
+                <hr>
                 <div id='10' class="month oct">Жовтень</div>
+                <hr>
                 <div id='11' class="month nov">Листопад</div>
+                <hr>
                 <div id='12' class="month dec">Грудень</div>
            </div> 
+
+           
+
+           <div class="days-on-week">
+                {% comment %} Здесь писать {% endcomment %}
+                <h4 class='day-week'>Вс</h4>
+                <hr>
+                <h4 class='day-week'>Пн</h4>
+                <hr>
+                <h4 class='day-week'>Вт</h4>
+                <hr>
+                <h4 class='day-week'>Ср</h4>
+                <hr>
+                <h4 class='day-week'>Чт</h4>
+                <hr>
+                <h4 class='day-week'>Пт</h4>
+                <hr>
+                <h4 class='day-week'>Сб</h4>
+           </div>
+
+
+
            <div class="calendar-content" id='01'>
-                <div class="week">
+                 <ul class="calendar-dates">
+
+                 </ul>
+                {% comment %} <div class="week">
                     <div class="day">1</div>
                     <div class="day">2</div>
                     <div class="day">3</div>
@@ -95,44 +135,53 @@ Kalendaru - Календар
                     <div class="day">5</div>
                     <div class="day">6</div>
                     <div class="day">7</div>
-                </div>
-                <div class="week">
-                    <div class="day">8</div>
+                {% comment %} </div> {% endcomment %}
+                {% comment %} <div class="week"> {% endcomment %}
+                {% comment %}    <div class="day">8</div>
                     <div class="day">9</div>
                     <div class="day">10</div>
                     <div class="day">11</div>
                     <div class="day">12</div>
                     <div class="day">13</div>
-                    <div class="day">14</div>
-                </div>
-                <div class="week">
-                    <div class="day">15</div>
+                    <div class="day">14</div>{% endcomment %}
+                {% comment %} </div> {% endcomment %}
+                {% comment %} <div class="week"> {% endcomment %}
+                {% comment %}    <div class="day">15</div>
                     <div class="day">16</div>
                     <div class="day">17</div>
                     <div class="day">18</div>
                     <div class="day">19</div>
                     <div class="day">20</div>
-                    <div class="day">21</div>
-                </div>
-                <div class="week">
-                    <div class="day">22</div>
+                    <div class="day">21</div>{% endcomment %}
+                {% comment %} </div> {% endcomment %}
+                {% comment %} <div class="week"> {% endcomment %}
+                {% comment %}    <div class="day">22</div>
                     <div class="day">23</div>
                     <div class="day">24</div>
                     <div class="day">25</div>
                     <div class="day">26</div>
                     <div class="day">27</div>
-                    <div class="day">28</div>
-                </div>
-                <div class="week">
-                    <div class="day">29</div>
+                    <div class="day">28</div>{% endcomment %}
+                {% comment %} </div> {% endcomment %}
+                {% comment %} <div class="week"> {% endcomment %}
+                {% comment %}    <div class="day">29</div>
                     <div class="day">30</div>
                     <div class="day">31</div>
-                    <div class="no-active-day">1</div>
-                    <div class="no-active-day">2</div>
-                    <div class="no-active-day">3</div>
-                    <div class="no-active-day">4</div>
-                </div>
-                <button class="legend">Легенди</button>
+                    <div class="day no-active-day">1</div>
+                    <div class="day no-active-day">2</div>
+                    <div class="day no-active-day">3</div>
+                    <div class="day no-active-day">4</div> {% endcomment %}
+                {% comment %} </div>  {% endcomment %}
+                {% comment %} {% for week in calendar %}
+                    <div class='week'>
+                        {% for days in week %}
+                            <div class='day'>
+                                {{ days }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endfor %} {% endcomment %}
+                <button class="legend">Легенди</button> 
            </div>
         </div>
         <div class="calendar-right">
@@ -161,5 +210,7 @@ Kalendaru - Календар
 {% endblock %}
 
 {% block js %}
+
+<script src="{% static 'js/manipulate.js' %}" defer></script>
 <script src="{% static 'js/calendar.js' %}" defer></script>
 {% endblock %}

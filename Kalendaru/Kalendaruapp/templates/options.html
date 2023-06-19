@@ -44,7 +44,7 @@ Kalendaru - Опції
                 <button class="button-options notification" onclick="notificationOption()">Сповіщення</button>
                 <button class="button-options privacy" onclick="policyOption()">Privacy Policy</button>
                 <button class="button-options terms" onclick="termsOption()">Terms Of Use</button>
-                <button class="button-options languages" onclick="languageOption()" hidden>Мови</button>
+                <button class="button-options languages" onclick="languageOption()">Про нас</button>
                 <form method="POST" class="logout mobile">
                     {% csrf_token %}
                     <button class="button-options" name='logout'>Вийти з облікового запису</button>
@@ -108,10 +108,29 @@ Kalendaru - Опції
             <div class="content-option messages-content" style="display: none">
                 <h2>Сповіщення</h2>
                 <div class="form-check form-switch messages-button">
-                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                    <input class="form-check-input main-notification" type="checkbox" role="switch" id="main-notification">
                     <label class="form-check-label" for="flexSwitchCheckDefault">Сповіщення</label>
                 </div>
                 <p style="color: #777777;">Сповіщення буде надавати інформацію про завдання, нотатків та інших події з Kalendaru</p>
+                <div class="notifications">
+                    <div class="form-check form-switch messages-button">
+                        <input class="form-check-input otherCheckboxes" type="checkbox" role="switch" id="tasks">
+                        <label class="form-check-label" for="flexSwitchCheckDefault">Сповіщення завдань</label>
+                    </div>
+                    <p style="color: #777777;">Сповіщення буде надавати інформацію про завдання з Kalendaru</p>
+                    <div class="form-check form-switch messages-button">
+                        <input class="form-check-input otherCheckboxes" type="checkbox" role="switch" id="notes">
+                        <label class="form-check-label" for="flexSwitchCheckDefault">Сповіщення нотатків</label>
+                    </div>
+                    <p style="color: #777777;">Сповіщення буде надавати інформацію про нотатків з Kalendaru</p>
+                    <div class="form-check form-switch messages-button">
+                        <input class="form-check-input otherCheckboxes" type="checkbox" role="switch" id="actions">
+                        <label class="form-check-label" for="flexSwitchCheckDefault">Сповіщення офіційних подій</label>
+                    </div>
+                    <p style="color: #777777;">Сповіщення буде надавати інформацію про офіційні події з Kalendaru</p>
+                </div>
+
+                
             </div>
             <div class="content-option policy-content" style="display: none">
                 <p class="long-text"><h2>Політика конфіденційності Kalendaru</h2>
@@ -256,12 +275,28 @@ Kalendaru - Опції
                     Використовуючи Календар, ви підтверджуєте, що прочитали, зрозуміли та погодилися з цими Умовами використання.</p>
             </div>
             <div class="content-option language-content" style="display: none">
-                <h2>Мови</h2>
+                
                 {% comment %} <div class="form-check form-switch messages-button">
                     <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
                     <label class="form-check-label" for="flexSwitchCheckDefault">Сповіщення</label>
                 </div> {% endcomment %}
-                <p style="color: #777777;">Поки-що нічого немає.</p>
+                <p class="long-text">
+                    <h2>Про нас</h2>
+                    <h4>Kalendaru</h4>
+                    <p>Ласкаво просимо на Kalendaru! Наш сайт є нашим дипломним проектом, який присвячений календарю і надає можливість створювати блокноти, завдання та мати власний обліковий запис.</p>
+                    <h4>Команда</h4>
+                    <p>Ми працювали в команді, до якої входили три людини: <strong>Дмітрий Срібний (керівник команди), Ткаченко Прохор та Кирило-Володимир Осяков.</strong></p>
+                    <h4>Технології</h4>
+                    <p>Для розробки нашого проекту ми використовували такі технології: <strong><img class="logo-technologies" src="{% static 'img/django.png' %}" alt=""> Django, <img class="logo-technologies" src="{% static 'img/figma.png' %}" alt=""> Figma, <img class="logo-technologies" src="{% static 'img/python.png' %}" alt=""> Python, <img class="logo-technologies" src="{% static 'img/js.png' %}" alt=""> JavaScript (<img class="logo-technologies" src="{% static 'img/jquery.svg' %}" alt=""> JQuery), <img class="logo-technologies" src="{% static 'img/bootstrap.png' %}" alt=""> Bootstrap, <img class="logo-technologies" src="{% static 'img/gmail.png' %}" alt=""> Gmail API, <img class="logo-technologies" src="{% static 'img/sqlite3.png' %}" alt=""> Sqlite3 та <img class="logo-technologies" src="{% static 'img/pythonanywhere.png' %}" alt=""> Pythonanywhere</strong>. Кожен з нас вніс свій внесок у створення цього веб-сайту, поєднавши свої навички та ідеї.</p>
+                    <h4>Мета</h4>
+                    <p>Наша мета полягала <strong>в створенні зручного та функціонального інструменту, який допоможе користувачам організувати свої розклади, плани та завдання</strong>. Ми вклали багато зусиль у розробку і дизайн Kalendaru, сподіваючись, що він стане надійним помічником для кожного, хто шукає ефективний спосіб управляти своїм часом та завданнями.</p>
+                    <h4>Подякування</h4>
+                    <p>Ми продовжуємо працювати над вдосконаленням Kalendaru та надаємо регулярні оновлення, щоб забезпечити найкращий досвід користувача. Ми вдячні вам за використання нашого сервісу і сподіваємося, що він буде вам корисним.</p>
+                    <h5>Дякуємо, що обрали Kalendaru!</h5>
+                    <h5>З повагою,</h5>
+                    <h5>Команда Kalendaru</h5>
+                    
+                </p>
             </div>
         </div>
 

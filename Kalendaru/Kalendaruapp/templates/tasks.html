@@ -57,46 +57,53 @@ Kalendaru - Завдання
         
         <div class="task-content">
             <div class="task-list">
+                {% if tasks %} 
                 <div style="width: 100%;display: flex;flex-direction: column;gap: 5px;">
-                    <h3 class="undone-scroll">Треба виконати</h3>
-                    {% for task in tasks %}
-                        {% if not task.hascompleted %}
-                            <div class="task" style="background: #72F0F3;">
-                                <div class="text-close">
-                                    <h5 class='taskName'>{{ task.name }}</h5>
-                                    <form action="{% url 'tasks' %}" method="POST" >
-                                        {% csrf_token %}
-                                        <input type='image' src="{% static 'img/check-circle.svg' %}" class="remove-task">
-                                        <input type="hidden" name='completed' value='{{ task.pk }}'>
-                                    </form>
-                                </div>
-                                <h6>До <span class='taskDate'>{{ task.date_added }}</span></h6>
-                                <input type="hidden" class='taskDesc' value="{{ task.description }}">
-                                <input type="hidden" class='taskAction' value="{{ task.action }}">
-                            </div>
-                        {% endif %}
-                    {% endfor %}
+                    
+                        <h3 class="undone-scroll">Треба виконати</h3>
+                            {% for task in tasks %}
+                                {% if not task.hascompleted %}
+                                    <div class="task" style="background: #72F0F3;">
+                                        <div class="text-close">
+                                            <h5 class='taskName'>{{ task.name }}</h5>
+                                            <form action="{% url 'tasks' %}" method="POST" >
+                                                {% csrf_token %}
+                                                <input type='image' src="{% static 'img/check-circle.svg' %}" class="remove-task">
+                                                <input type="hidden" name='completed' value='{{ task.pk }}'>
+                                            </form>
+                                        </div>
+                                        <h6>До <span class='taskDate'>{{ task.date_added }}</span></h6>
+                                        <input type="hidden" class='taskDesc' value="{{ task.description }}">
+                                        <input type="hidden" class='taskAction' value="{{ task.action }}">
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+
+
                 </div>
                 <div class="done" style="width: 100%;display: flex;flex-direction: column;gap: 5px;">
                     <h3 class="done-scroll">Виконано</h3>
-                    {% for task in tasks %}
-                        {% if task.hascompleted %}
-                            <div class="task" style="background: #FFDE66;" id="{{ task.pk }}">
-                                <div class="text-close">
-                                    <h5 class='taskName'>{{ task.name }}</h5>
-                                    <form action="{% url 'tasks' %}" method="POST" class="formDeleteTask">
-                                        {% csrf_token %}
-                                        <input type='image' src="{% static 'img/delete.svg' %}" class="remove-task" value="{{ task.pk }}">
-                                        <input type="hidden" name='removeTask' value='{{ task.pk }}'>
-                                    </form>
+                        {% for task in tasks %}
+                            {% if task.hascompleted %}
+                                <div class="task" style="background: #FFDE66;" id="{{ task.pk }}">
+                                    <div class="text-close">
+                                        <h5 class='taskName'>{{ task.name }}</h5>
+                                        <form action="{% url 'tasks' %}" method="POST" class="formDeleteTask">
+                                            {% csrf_token %}
+                                            <input type='image' src="{% static 'img/delete.svg' %}" class="remove-task" value="{{ task.pk }}">
+                                            <input type="hidden" name='removeTask' value='{{ task.pk }}'>
+                                        </form>
+                                    </div>
+                                    <h6>До <span class='taskDate'>{{ task.date_added }}</span></h6>
+                                    <input type="hidden" class='taskDesc' value="{{ task.description }}">
+                                    <input type="hidden" class='taskAction' value="{{ task.action }}">
                                 </div>
-                                <h6>До <span class='taskDate'>{{ task.date_added }}</span></h6>
-                                <input type="hidden" class='taskDesc' value="{{ task.description }}">
-                                <input type="hidden" class='taskAction' value="{{ task.action }}">
-                            </div>
-                        {% endif %}
-                    {% endfor %}
+                            {% endif %}
+                        {% endfor %}
                 </div>
+                {% else %}
+                     <h5>Немає завдань</h5>
+                {% endif %}
             </div>
             <button class="add-task-button">Створити завдання</button>
             <div class="task-description">

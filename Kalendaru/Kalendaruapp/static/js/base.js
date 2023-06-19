@@ -1,6 +1,5 @@
-
-// let logoLoading = document.querySelector('.logoLoading')
-// let loading = document.querySelector('.loading')
+let logoLoading = document.querySelector('.logoLoading')
+let loading = document.querySelector('.loading')
 // function loadingdoc(event) {
 //     logoLoading.style.display = "block";
 //     setTimeout(
@@ -32,6 +31,8 @@ else {
     window.location.href = "{% url 'error' %}"
     $("#errorSite").text('Виникла помилка! Будь ласка змініть на СНГ мову щоб працював Kalendaru.')
 }
+
+
 if (window.matchMedia("(max-width: 700px)").matches == false) {
     document.querySelector('.side-main').addEventListener('mouseenter', function () {
         document.querySelector('.side-main').classList.add('hover')
@@ -62,8 +63,7 @@ if (window.matchMedia("(max-width: 700px)").matches == false) {
         }
     })
 
-    // window.addEventListener('load', function () {
-    // loading.style.opacity = 0;
+
     if (window.localStorage.getItem('hover')) {
         document.querySelector('.side-main').style.transitionDuration = "0s"
         document.querySelectorAll('.icons').forEach(function (iconButton, index, iconButtons) {
@@ -80,7 +80,7 @@ if (window.matchMedia("(max-width: 700px)").matches == false) {
             textButton.classList.add('hovertext')
         })
         setTimeout(function () {
-            // loading.style.display = 'none';
+
             document.querySelector('.side-main').style.transitionDuration = "400ms"
             document.querySelectorAll('.icons').forEach(function (iconButton, index, iconButtons) {
                 iconButton.style.transitionDuration = "400ms"
@@ -90,6 +90,13 @@ if (window.matchMedia("(max-width: 700px)").matches == false) {
             })
         }, 1)
     }
-    // })
+
 }
 
+window.addEventListener('load', function () {
+    loading.style.opacity = 0;
+    setTimeout(function () {
+        loading.style.display = 'none';
+        loading.remove()
+    }, 200)
+})

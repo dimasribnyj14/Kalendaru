@@ -2,6 +2,9 @@ from django.shortcuts import render, redirect
 from Kalendaruapp.models import *
 from django.core.mail import send_mail
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
+from django.utils.safestring import mark_safe
+import calendar
+import datetime
 from datetime import date
 from django.contrib.auth.models import User
 from django.db import IntegrityError
@@ -211,17 +214,27 @@ def tasks(request):
             redirect('tasks')
     return render(request, "tasks.html",context)
 
-def calendar(request):
+def kalendaru(request):
+    current_date = datetime.date.today()
+    year = current_date.year
+    month = current_date.month
+    cal = calendar.monthcalendar(year,month)
     if request.user.is_authenticated:
         context = {
             'avatar':UserProfile.objects.get(user=request.user.pk),
             'tasks':Tasks.objects.filter(user_join_id=request.user.pk),
             'notes':Notes.objects.filter(user_join_id=request.user.pk),
-            'actions':Actions.objects.all()
+            'actions':Actions.objects.all(),
+            'calendar': mark_safe(cal),
+            'year': year,
+            'month': month
         }
     else:
         context={
-            'actions':Actions.objects.all()
+            'actions':Actions.objects.all(),
+            'calendar': mark_safe(calendar),
+            'year': year,
+            'month': month
         }
     if request.method == 'POST':
         if request.POST.get('make-completed') != None:
@@ -229,7 +242,7 @@ def calendar(request):
             task = Tasks.objects.get(pk=pkTask)
             task.hascompleted = True
             task.save()
-        elif request.POST.get('remove') != None:
+        elif request.POST.get('taskornote') != None:
             pkObject = request.POST.get('pkForm')
             classObject = request.POST.get('taskornote')
             if classObject == "task-info":

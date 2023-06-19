@@ -53,22 +53,26 @@ Kalendaru - Нотатки
 
         <div class="notes-content">
             <div class="days">
-                {% for note in notes %}
-                    <div class="note" id="{{ note.pk }}">
-                        <div class="text-close">
-                            <h5 class='noteName'>{{ note.name }}</h5>
-                            <form action="{% url 'notes' %}" method="POST" class="formDeleteNote">
-                                {% csrf_token %}
-                                <input type='image' src="{% static 'img/delete.svg' %}" class="remove-note" value='{{ note.pk }}'>
-                                <input type="hidden" name='pknote' class="pkNoteDelete"  value='{{ note.pk }}'>
-                            </form>
+
+                {% if notes %}
+                    {% for note in notes %}
+                        <div class="note" id="{{ note.pk }}">
+                            <div class="text-close">
+                                <h5 class='noteName'>{{ note.name }}</h5>
+                                <form action="{% url 'notes' %}" method="POST" class="formDeleteNote">
+                                    {% csrf_token %}
+                                    <input type='image' src="{% static 'img/delete.svg' %}" class="remove-note" value='{{ note.pk }}'>
+                                    <input type="hidden" name='pknote' class="pkNoteDelete"  value='{{ note.pk }}'>
+                                </form>
+                            </div>
+                            <h6 class='noteDate'>{{ note.date_added }}</h6>
+                            <input type="hidden" class='noteDesc' value="{{ note.description }}">
+                            <input type="hidden" class='noteAction' value="{{ note.action }}">
                         </div>
-                        <h6 class='noteDate'>{{ note.date_added }}</h6>
-                        <input type="hidden" class='noteDesc' value="{{ note.description }}">
-                        <input type="hidden" class='noteAction' value="{{ note.action }}">
-                    </div>
-                    
-                {% endfor %}
+                    {% endfor %}
+                {% else %}
+                    <h5>Немає нотатків</h5>
+                {% endif %}
             </div>
             <button class="add-note-button">Створити нотаток</button>
             <div class="note-description">
