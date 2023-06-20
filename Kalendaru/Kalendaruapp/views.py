@@ -24,12 +24,11 @@ def sign_in(request):
 
         user = authenticate(request, username = username, password = password)
         if user != None:
-            if User.objects.get(username=username).is_active == False:
-                context["error_text"] = "Виникла помилка! Цей обліковий запис був вимкнений!"
-            else:
-                login(request, user)
-                context["error_text"] = ""
-                return redirect('calendar')
+            login(request, user)
+            context["error_text"] = ""
+            return redirect('calendar')
+        # elif User.objects.get(username=username).is_active == False:
+            # context["error_text"] = "Виникла помилка! Цей обліковий запис був вимкнений!"
         else:
             context["error_text"] = "Виникла помилка! Пошта або пароль не співпадають!"
         
@@ -79,7 +78,7 @@ def support(request):
         email = request.POST.get('email')
         text = request.POST.get('message')
         message = f"{text}. Для зв'язка з {name} є {email}"
-        send_to_user = f'Добридень, {name}! \nПрийшло поки що автоматичне повідомлення і модерація на даний момент аналізує ваше повідомлення. \nПротягом кількох годин дадуть відповідь.'
+        send_to_user = f'Добридень, {name}! \nПрийшло поки що автоматичне повідомлення і модерація на даний момент аналізує ваше повідомлення. \nПротягом кількох годин дадуть відповідь. \n\nЗ повагою,\nКоманда Kalendaru'
         send_mail('Kalendaru Team', send_to_user, 'settings.EMAIL_HOST_USER', [email],fail_silently=False)
         send_mail(name, message, 'settings.EMAIL_HOST_USER', ['kalendaruhelp@gmail.com'], fail_silently=False)
         
@@ -102,7 +101,7 @@ def options(request):
             if check_password(request.POST.get('passwordModalDelete'), request.user.password):
                 if not request.user.is_superuser:
                     user = User.objects.get(username=request.user.username)
-                    send_mail('Kalendaru Team', "Ваш обліковий запис був вимкнений. \nУ вас є 30 днів, щоб повернути обліковий запис, інакше ваш обліковий запис буде повністю видалений. \nЯкщо ви бажаєте відновити обліковий запис, будь ласка, напишіть на пошту дані від вашого облікового запису Kalendaru. \n(Обов'язково: Ім'я користувача)", 'settings.EMAIL_HOST_USER', [request.user.email],fail_silently=False)
+                    send_mail('Kalendaru Team', "Ваш обліковий запис був вимкнений. \nУ вас є 30 днів, щоб повернути обліковий запис, інакше ваш обліковий запис буде повністю видалений. \nЯкщо ви бажаєте відновити обліковий запис, будь ласка, напишіть на пошту дані від вашого облікового запису Kalendaru. \n(Обов'язково: Ім'я користувача) \n\nЗ повагою,\nКоманда Kalendaru", 'settings.EMAIL_HOST_USER', [request.user.email],fail_silently=False)
                     logout(request)
                     user.is_active = False
                     user.save()

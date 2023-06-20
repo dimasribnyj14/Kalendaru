@@ -156,17 +156,14 @@ createYear()
 let choiceYearDivs = document.querySelectorAll('.yearButton')
 yearChoiceDiv.id = today.split(' ')[2]
 if (document.querySelectorAll('.daycheck').length > 35) {
-    calendarDates.style.height = '76%'
-    console.log('wod')
+    calendarDates.style.height = 'auto'
 } else {
-    console.log(document.querySelectorAll('.daycheck').length)
     calendarDates.style.height = '100%'
 }
 
 choiceYearDivs.forEach(function (divYear, index, choiceYearDivs) {
     if (divYear.textContent == today.split(' ')[2]) {
         divYear.style.color = '#555555';
-        console.log(divYear.scrollLeft)
         yearChoiceDiv.scrollTo({
             top: 0,
             left: divYear.offsetLeft / 1.1,
@@ -174,6 +171,13 @@ choiceYearDivs.forEach(function (divYear, index, choiceYearDivs) {
         })
     }
 })
+
+// function CheckDay() {
+//     let newDay = new Date()
+//     let takeDay = newDay.getDate()
+//     window.localStorage.setItem('NLimit', takeDay)
+// }
+// setInterval(CheckDay, 1000)
 function SearchActionsDay() {
     days = document.querySelectorAll('.day')
     // console.log(today.split(' ')[2], $(".calendar-content").attr('id'), today.split(' ')[0])
@@ -381,6 +385,9 @@ function SearchActionsDay() {
                                         day.addEventListener('click', function () {
                                             if (valueMonth == monthName) {
                                                 if (valueDay == day.textContent) {
+                                                    if (day.classList.contains('note-info')) {
+                                                        day.classList.remove('note-info')
+                                                    }
                                                     let nameTask = task.querySelector('.taskName');
                                                     let descTask = task.querySelector('.taskDesc');
                                                     let actionTask = task.querySelector('.taskEvent');
@@ -445,6 +452,11 @@ function SearchActionsDay() {
                         if (valueMonth == monthName) {
                             if (valueDay == day.textContent) {
                                 if (!day.classList.contains('no-active-day')) {
+                                    if (day.classList.contains('note-info')) {
+                                        day.classList.remove('note-info')
+                                    } else if (day.classList.contains('task-info')) {
+                                        day.classList.remove('task-info')
+                                    }
                                     let isOffical = action.querySelector('.actionOfficial')
                                     let isKalendaru = action.querySelector('.actionKalendaru')
                                     if (isOffical.value == 'True') {
@@ -529,10 +541,8 @@ choiceYearDivs.forEach(function (divYear, index, choiceYearDivs) {
         yearChoiceDiv.id = divYear.textContent
         manipulate(date = todaydate, divYear.textContent, Number($(".calendar-content").attr('id') - 1))
         if (document.querySelectorAll('.daycheck').length > 35) {
-            calendarDates.style.height = '76%'
-            console.log('wod')
+            calendarDates.style.height = 'auto'
         } else {
-            console.log(document.querySelectorAll('.daycheck').length)
             calendarDates.style.height = '100%'
         }
         choiceYearDivs.forEach(function (divYear, index, choiceYearDivs) {
@@ -587,24 +597,35 @@ months.forEach(function (month, index, months) {
         // SearchActionsDay()
         manipulate(date = todaydate, yearChoiceDiv.id, Number($(".calendar-content").attr('id') - 1))
 
+
+        // Now this code is useless
         if (document.querySelectorAll('.daycheck').length > 35) {
-            calendarDates.style.height = '76%'
-            console.log('wod')
+            calendarDates.style.height = 'auto'
         } else {
-            console.log(document.querySelectorAll('.daycheck').length)
             calendarDates.style.height = '100%'
         }
+
+
+
         SearchActionsDay()
     })
 })
-window.localStorage.setItem('Day', today.split(' ')[0])
-window.addEventListener('storage', function (event) {
-    if (event.oldValue != event.newValue) {
-        window.localStorage.setItem('NLimit', 0)
-    }
-
-})
-
+let Notificate = true
+// window.addEventListener('storage', function (event) {
+//     console.log(event.oldValue, event.newValue)
+//     if (event.oldValue != event.newValue) {
+//         Notificate = true
+//     } else {
+//         Notificate = false
+//     }
+// })
+if (window.localStorage.getItem('NLimit') !== null && window.localStorage.getItem('NLimit') !== today.split(' ')[0]) {
+    Notificate = true
+    console.log(Notificate)
+} else {
+    Notificate = false
+    console.log(Notificate)
+}
 if (areaName.textContent == '') {
     areaName.textContent = 'Сьогодні ніякої події немає'
     areaDate.style.height = '7%'
@@ -612,62 +633,64 @@ if (areaName.textContent == '') {
     calButtons.forEach(function (calButton, index, calButtons) {
         calButton.style.display = 'none'
     })
-
 }
-let checkDay = new Date('2024, 6, 1')
-let checkDays = new Date('2023, 6, 1')
-console.log(checkDays, checkDays.getDay())
-console.log(checkDay, checkDay.getDay())
-SearchActionsDay()
-$(document).ready(function () {
 
+SearchActionsDay()
+$(document).ready(function (event) {
     // document.addEventListener('visibilitychange', function () {
     // if (document.visibilityState === 'hidden') {
     let CheckForm = localStorage.getItem('PushN')
     if (CheckForm == 'true') {
-        days.forEach(function (day, index, days) {
-            if (day.style.boxShadow == 'rgb(0, 0, 0) 0px 0px 5px 1px') {
-                if (day.style.background == 'rgb(255, 222, 102)') {
-                    if (localStorage.getItem('actions') == 'true') {
-                        new Notification('Сьогодні відзначається офіційна подія!', {
-                            body: `Сьогодні ${today.split(' ')[0]}.${today.split(' ')[1]} відзначається подія: ${areaName.textContent}`,
-                            icon: 'https://colourlex.com/wp-content/uploads/2021/02/naples-yellow-painted-swatch.jpg'
-                        })
-                    }
-
-                }
-                else if (day.style.background == 'rgb(0, 255, 179)') {
-                    if (localStorage.getItem('actions') == 'true') {
-                        new Notification('Сьогодні відзначається подія від Kalendaru!', {
-                            body: `Сьогодні ${today.split(' ')[0]}.${today.split(' ')[1]} відзначається подія: ${areaName.textContent}`,
-                            icon: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAA1BMVEVJxJZuy6+uAAAASElEQVR4nO3BgQAAAADDoPlTX+AIVQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwDcaiAAFXD1ujAAAAAElFTkSuQmCC'
-                        })
-                    }
-
-                }
-                else if (day.style.background == 'rgb(208, 250, 251)') {
-                    if (day.classList.contains('task-info')) {
-                        if (localStorage.getItem('tasks') == 'true') {
-                            new Notification('Сьогодні відзначається ваша завдання!', {
+        if (Notificate == true) {
+            days.forEach(function (day, index, days) {
+                if (day.style.boxShadow == 'rgb(0, 0, 0) 0px 0px 5px 1px') {
+                    if (day.style.background == 'rgb(255, 222, 102)') {
+                        if (localStorage.getItem('actions') == 'true') {
+                            new Notification('Сьогодні відзначається офіційна подія!', {
                                 body: `Сьогодні ${today.split(' ')[0]}.${today.split(' ')[1]} відзначається подія: ${areaName.textContent}`,
-                                icon: 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxISEhUSEhIVFRUVFRUXFRUXFRUVFxUVFRUWFxUVFRUYHSggGBolHRUVITEhJSkrLi4uFx8zODMtNygtLisBCgoKDg0OFxAQFy0fHR0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLf/AABEIAOEA4QMBIgACEQEDEQH/xAAYAAEBAQEBAAAAAAAAAAAAAAAAAQIHA//EACUQAQEBAAAFAwQDAAAAAAAAAAABEQIhMWHwQYHBElFxoQOx0f/EABYBAQEBAAAAAAAAAAAAAAAAAAABA//EABgRAQADAQAAAAAAAAAAAAAAAAABEUEx/9oADAMBAAIRAxEAPwDsKDVrdgiKYIRFxBRamKCLpgBAlQFhiLQJ+TkhAVfdkBbUWAFRaYAGGAikhaCUXfMhohoaAkFiABgCoqAvCQSCrhiGCBV0oIC4CYpE0UGtNCkww6mAU0SAtiYqQFClAxMWFBBcBAKYKQMAKSB5/YGmosggUMFDT6UBbUgCFFiAtRQFSrPhlFIqNVRIIsBCRZAQRTBUFzuBS6zi0qAGiiKYYCRaiwADQC07oCkvnIqAUWoItgVBVphpQCxAQWACNSsgLpA0UwPqoIVIpgqCmAiiCAugBIRaKmoLBCopgFIIKGiiGEKSipRUEU0QVaakLAXSos8/YiAoILQFrIAtRaCiKQEWIoiLBABaAaYmgq0gUEUqCAAKilFDUhYAoQEF5AgYRBVwwJAKIQFqyJUBcWxKiCiKoaIsAsQi6ISosJBSGougtqUJUEFLFQKAotiRNBcDQQhCFFQUoLahUBbFiUiCGrw0UAqAKIIsRYuisxq9E0xBBUVF1KLopIQQAi1BFiLSwVBeX3BCIsKKQKcILcTA9UCkIKAVYgzRcNVDRFRTDEFRcKkiimgARFQFvojXFE1ANQVF01AUAEX8ERdFRTARCVcTQWoKKAYBpiLKBaRFBFw0lA0RbQMDSAUReEFvEnJAotc7mGGgYFSAud4G9gEXDUBdKYaBpiNSgysXUwCGrb555zSxApoKGmotBFhADUXEoKGAILpohQMFKi2mginsAYJ50AWoAixFqAovZBUi1FoJFqKCLhC0CIuAELEIBF1LFA4jDiQFwwqaDWsrEA1UUQRUAABbSIQVTQAKjVBIUhoIsAC4SoAsRYYCSKRAURbQNEKCxKKBAqAoABUBAX6aBQaGChSJAFpDBAhhRUFqCLoYCmoAi0qLRRBRAwxBVKi0RIthhRUVNWgYYQtA5fYTVEX+TrWfTzuBi61fj4ZAglfP0gED09GPXz7KJCsrwqKjK8PWfkA1f5OrIEE9FvwAHp7nD1AEAEFoAvEzFBUIoBxf4cIBrAAj/9k='
+                                icon: 'https://colourlex.com/wp-content/uploads/2021/02/naples-yellow-painted-swatch.jpg'
                             })
+                            window.localStorage.setItem('NLimit', today.split(' ')[0])
+                        }
+
+                    }
+                    else if (day.style.background == 'rgb(0, 255, 179)') {
+                        if (localStorage.getItem('actions') == 'true') {
+                            new Notification('Сьогодні відзначається подія від Kalendaru!', {
+                                body: `Сьогодні ${today.split(' ')[0]}.${today.split(' ')[1]} відзначається подія: ${areaName.textContent}`,
+                                icon: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAA1BMVEVJxJZuy6+uAAAASElEQVR4nO3BgQAAAADDoPlTX+AIVQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwDcaiAAFXD1ujAAAAAElFTkSuQmCC'
+                            })
+                            window.localStorage.setItem('NLimit', today.split(' ')[0])
+                        }
+
+                    }
+                    else if (day.style.background == 'rgb(208, 250, 251)') {
+                        if (day.classList.contains('task-info')) {
+                            if (localStorage.getItem('tasks') == 'true') {
+                                new Notification('Сьогодні відзначається ваша завдання!', {
+                                    body: `Сьогодні ${today.split(' ')[0]}.${today.split(' ')[1]} відзначається подія: ${areaName.textContent}`,
+                                    icon: 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxISEhUSEhIVFRUVFRUXFRUXFRUVFxUVFRUWFxUVFRUYHSggGBolHRUVITEhJSkrLi4uFx8zODMtNygtLisBCgoKDg0OFxAQFy0fHR0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLf/AABEIAOEA4QMBIgACEQEDEQH/xAAYAAEBAQEBAAAAAAAAAAAAAAAAAQIHA//EACUQAQEBAAAFAwQDAAAAAAAAAAABEQIhMWHwQYHBElFxoQOx0f/EABYBAQEBAAAAAAAAAAAAAAAAAAABA//EABgRAQADAQAAAAAAAAAAAAAAAAABEUEx/9oADAMBAAIRAxEAPwDsKDVrdgiKYIRFxBRamKCLpgBAlQFhiLQJ+TkhAVfdkBbUWAFRaYAGGAikhaCUXfMhohoaAkFiABgCoqAvCQSCrhiGCBV0oIC4CYpE0UGtNCkww6mAU0SAtiYqQFClAxMWFBBcBAKYKQMAKSB5/YGmosggUMFDT6UBbUgCFFiAtRQFSrPhlFIqNVRIIsBCRZAQRTBUFzuBS6zi0qAGiiKYYCRaiwADQC07oCkvnIqAUWoItgVBVphpQCxAQWACNSsgLpA0UwPqoIVIpgqCmAiiCAugBIRaKmoLBCopgFIIKGiiGEKSipRUEU0QVaakLAXSos8/YiAoILQFrIAtRaCiKQEWIoiLBABaAaYmgq0gUEUqCAAKilFDUhYAoQEF5AgYRBVwwJAKIQFqyJUBcWxKiCiKoaIsAsQi6ISosJBSGougtqUJUEFLFQKAotiRNBcDQQhCFFQUoLahUBbFiUiCGrw0UAqAKIIsRYuisxq9E0xBBUVF1KLopIQQAi1BFiLSwVBeX3BCIsKKQKcILcTA9UCkIKAVYgzRcNVDRFRTDEFRcKkiimgARFQFvojXFE1ANQVF01AUAEX8ERdFRTARCVcTQWoKKAYBpiLKBaRFBFw0lA0RbQMDSAUReEFvEnJAotc7mGGgYFSAud4G9gEXDUBdKYaBpiNSgysXUwCGrb555zSxApoKGmotBFhADUXEoKGAILpohQMFKi2mginsAYJ50AWoAixFqAovZBUi1FoJFqKCLhC0CIuAELEIBF1LFA4jDiQFwwqaDWsrEA1UUQRUAABbSIQVTQAKjVBIUhoIsAC4SoAsRYYCSKRAURbQNEKCxKKBAqAoABUBAX6aBQaGChSJAFpDBAhhRUFqCLoYCmoAi0qLRRBRAwxBVKi0RIthhRUVNWgYYQtA5fYTVEX+TrWfTzuBi61fj4ZAglfP0gED09GPXz7KJCsrwqKjK8PWfkA1f5OrIEE9FvwAHp7nD1AEAEFoAvEzFBUIoBxf4cIBrAAj/9k='
+                                })
+                                window.localStorage.setItem('NLimit', today.split(' ')[0])
+                            }
+                        }
+                        if (day.classList.contains('note-info')) {
+                            if (localStorage.getItem('notes') == 'true') {
+                                new Notification('Сьогодні відзначається ваша подія!', {
+                                    body: `Сьогодні ${today.split(' ')[0]}.${today.split(' ')[1]} відзначається подія: ${areaName.textContent}`,
+                                    icon: 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxISEhUSEhIVFRUVFRUXFRUXFRUVFxUVFRUWFxUVFRUYHSggGBolHRUVITEhJSkrLi4uFx8zODMtNygtLisBCgoKDg0OFxAQFy0fHR0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLf/AABEIAOEA4QMBIgACEQEDEQH/xAAYAAEBAQEBAAAAAAAAAAAAAAAAAQIHA//EACUQAQEBAAAFAwQDAAAAAAAAAAABEQIhMWHwQYHBElFxoQOx0f/EABYBAQEBAAAAAAAAAAAAAAAAAAABA//EABgRAQADAQAAAAAAAAAAAAAAAAABEUEx/9oADAMBAAIRAxEAPwDsKDVrdgiKYIRFxBRamKCLpgBAlQFhiLQJ+TkhAVfdkBbUWAFRaYAGGAikhaCUXfMhohoaAkFiABgCoqAvCQSCrhiGCBV0oIC4CYpE0UGtNCkww6mAU0SAtiYqQFClAxMWFBBcBAKYKQMAKSB5/YGmosggUMFDT6UBbUgCFFiAtRQFSrPhlFIqNVRIIsBCRZAQRTBUFzuBS6zi0qAGiiKYYCRaiwADQC07oCkvnIqAUWoItgVBVphpQCxAQWACNSsgLpA0UwPqoIVIpgqCmAiiCAugBIRaKmoLBCopgFIIKGiiGEKSipRUEU0QVaakLAXSos8/YiAoILQFrIAtRaCiKQEWIoiLBABaAaYmgq0gUEUqCAAKilFDUhYAoQEF5AgYRBVwwJAKIQFqyJUBcWxKiCiKoaIsAsQi6ISosJBSGougtqUJUEFLFQKAotiRNBcDQQhCFFQUoLahUBbFiUiCGrw0UAqAKIIsRYuisxq9E0xBBUVF1KLopIQQAi1BFiLSwVBeX3BCIsKKQKcILcTA9UCkIKAVYgzRcNVDRFRTDEFRcKkiimgARFQFvojXFE1ANQVF01AUAEX8ERdFRTARCVcTQWoKKAYBpiLKBaRFBFw0lA0RbQMDSAUReEFvEnJAotc7mGGgYFSAud4G9gEXDUBdKYaBpiNSgysXUwCGrb555zSxApoKGmotBFhADUXEoKGAILpohQMFKi2mginsAYJ50AWoAixFqAovZBUi1FoJFqKCLhC0CIuAELEIBF1LFA4jDiQFwwqaDWsrEA1UUQRUAABbSIQVTQAKjVBIUhoIsAC4SoAsRYYCSKRAURbQNEKCxKKBAqAoABUBAX6aBQaGChSJAFpDBAhhRUFqCLoYCmoAi0qLRRBRAwxBVKi0RIthhRUVNWgYYQtA5fYTVEX+TrWfTzuBi61fj4ZAglfP0gED09GPXz7KJCsrwqKjK8PWfkA1f5OrIEE9FvwAHp7nD1AEAEFoAvEzFBUIoBxf4cIBrAAj/9k='
+                                })
+                                window.localStorage.setItem('NLimit', today.split(' ')[0])
+                            }
                         }
                     }
-                    if (day.classList.contains('note-info')) {
-                        if (localStorage.getItem('notes') == 'true') {
-                            new Notification('Сьогодні відзначається ваша подія!', {
-                                body: `Сьогодні ${today.split(' ')[0]}.${today.split(' ')[1]} відзначається подія: ${areaName.textContent}`,
-                                icon: 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxISEhUSEhIVFRUVFRUXFRUXFRUVFxUVFRUWFxUVFRUYHSggGBolHRUVITEhJSkrLi4uFx8zODMtNygtLisBCgoKDg0OFxAQFy0fHR0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLf/AABEIAOEA4QMBIgACEQEDEQH/xAAYAAEBAQEBAAAAAAAAAAAAAAAAAQIHA//EACUQAQEBAAAFAwQDAAAAAAAAAAABEQIhMWHwQYHBElFxoQOx0f/EABYBAQEBAAAAAAAAAAAAAAAAAAABA//EABgRAQADAQAAAAAAAAAAAAAAAAABEUEx/9oADAMBAAIRAxEAPwDsKDVrdgiKYIRFxBRamKCLpgBAlQFhiLQJ+TkhAVfdkBbUWAFRaYAGGAikhaCUXfMhohoaAkFiABgCoqAvCQSCrhiGCBV0oIC4CYpE0UGtNCkww6mAU0SAtiYqQFClAxMWFBBcBAKYKQMAKSB5/YGmosggUMFDT6UBbUgCFFiAtRQFSrPhlFIqNVRIIsBCRZAQRTBUFzuBS6zi0qAGiiKYYCRaiwADQC07oCkvnIqAUWoItgVBVphpQCxAQWACNSsgLpA0UwPqoIVIpgqCmAiiCAugBIRaKmoLBCopgFIIKGiiGEKSipRUEU0QVaakLAXSos8/YiAoILQFrIAtRaCiKQEWIoiLBABaAaYmgq0gUEUqCAAKilFDUhYAoQEF5AgYRBVwwJAKIQFqyJUBcWxKiCiKoaIsAsQi6ISosJBSGougtqUJUEFLFQKAotiRNBcDQQhCFFQUoLahUBbFiUiCGrw0UAqAKIIsRYuisxq9E0xBBUVF1KLopIQQAi1BFiLSwVBeX3BCIsKKQKcILcTA9UCkIKAVYgzRcNVDRFRTDEFRcKkiimgARFQFvojXFE1ANQVF01AUAEX8ERdFRTARCVcTQWoKKAYBpiLKBaRFBFw0lA0RbQMDSAUReEFvEnJAotc7mGGgYFSAud4G9gEXDUBdKYaBpiNSgysXUwCGrb555zSxApoKGmotBFhADUXEoKGAILpohQMFKi2mginsAYJ50AWoAixFqAovZBUi1FoJFqKCLhC0CIuAELEIBF1LFA4jDiQFwwqaDWsrEA1UUQRUAABbSIQVTQAKjVBIUhoIsAC4SoAsRYYCSKRAURbQNEKCxKKBAqAoABUBAX6aBQaGChSJAFpDBAhhRUFqCLoYCmoAi0qLRRBRAwxBVKi0RIthhRUVNWgYYQtA5fYTVEX+TrWfTzuBi61fj4ZAglfP0gED09GPXz7KJCsrwqKjK8PWfkA1f5OrIEE9FvwAHp7nD1AEAEFoAvEzFBUIoBxf4cIBrAAj/9k='
-                            })
-                        }
-                    }
+
+
                 }
-                window.localStorage.setItem('NLimit', 1)
 
-            }
+            })
+        }
 
-        })
     }
     // }
     // })

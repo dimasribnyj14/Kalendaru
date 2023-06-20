@@ -15,7 +15,7 @@ Kalendaru - Завдання
         {% csrf_token %}
         <div class="input">
             <h3>Назва</h3>
-            <input class="input" required type="text" name="name" placeholder="Назва">
+            <input class="input form-control" required type="text" maxlength="30" name="name" placeholder="Назва">
         </div>
         <div class="input">
             <h3>Подія</h3>
@@ -31,11 +31,11 @@ Kalendaru - Завдання
         </div>
         <div class="input">
             <h3>Опис</h3>
-            <textarea class="textarea-message" required name="description" cols="83" rows="5" placeholder="Опис"></textarea>
+            <textarea class="textarea-message form-control" required name="description" cols="83" rows="5" placeholder="Опис"></textarea>
         </div>
         <div class="input">
             <h3>Виконати до</h3>
-            <input class="input date-input" required type="date" name="date" placeholder="Дата">
+            <input class="input date-input form-control" required type="date" name="date" placeholder="Дата">
         </div>
         <button class="add-task">Створити завдання</button>
     </form>
@@ -107,11 +107,11 @@ Kalendaru - Завдання
             </div>
             <button class="add-task-button">Створити завдання</button>
             <div class="task-description">
-                <form method="POST" style="height: 100%;display: flex;flex-direction: column;justify-content: space-between;">
+                <form method="POST" style="height: 100%;display: flex;flex-direction: column;justify-content: space-between;" class="needs-validation" novalidate>
                     {% csrf_token %}
                     <div class="input">
                         <h3>Назва</h3>
-                        <input class="input inputTaskName" required type="text" name="name" placeholder="Назва">
+                        <input class="input inputTaskName form-control" maxlength="30" required type="text" name="name" placeholder="Назва">
                     </div>
                     <div class="input">
                         <h3>Подія</h3>
@@ -127,11 +127,11 @@ Kalendaru - Завдання
                     </div>
                     <div class="input">
                         <h3>Опис</h3>
-                        <textarea class="textarea-message inputTaskDesc"  required name="description" cols="83" rows="5" placeholder="Опис"></textarea>
+                        <textarea class="textarea-message inputTaskDesc form-control"  required name="description" cols="83" rows="5" placeholder="Опис"></textarea>
                     </div>
                     <div class="input">
                         <h3>Виконати до</h3>
-                        <input class="input date-input inputTaskDate" required type="date" name="date" placeholder="Дата">
+                        <input class="input date-input inputTaskDate form-control" required type="date" name="date" placeholder="Дата">
                     </div>
                     <button class="add-task">Створити завдання</button>
                 </form>

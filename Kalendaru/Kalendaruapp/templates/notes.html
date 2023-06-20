@@ -15,7 +15,7 @@ Kalendaru - Нотатки
         {% csrf_token %}
         <div class="input">
             <h3>Назва</h3>
-            <input class="input inputNoteName" required type="text" name="name" placeholder="Назва">
+            <input class="input inputNoteName form-control" required maxlength="30" type="text" name="name" placeholder="Назва">
         </div>
         <div class="input">
             <h3>Подія</h3>
@@ -31,11 +31,11 @@ Kalendaru - Нотатки
         </div>
         <div class="input">
             <h3>Опис</h3>
-            <textarea class="textarea-message inputNoteDesc" required name="description" cols="83" rows="5" placeholder="Опис"></textarea>
+            <textarea class="textarea-message inputNoteDesc form-control" required name="description" cols="83" rows="5" placeholder="Опис"></textarea>
         </div>
         <div class="input">
             <h3>Дата</h3>
-            <input class="input date-input inputNoteDate" required type="date" name="date" placeholder="Дата">
+            <input class="input date-input inputNoteDate form-control" required type="date" name="date" placeholder="Дата">
         </div>
         <button class="add-note">Створити нотаток</button>
     </form>
@@ -76,11 +76,11 @@ Kalendaru - Нотатки
             </div>
             <button class="add-note-button">Створити нотаток</button>
             <div class="note-description">
-                <form method="POST" style="height: 100%;display: flex;flex-direction: column;justify-content: space-between;">
+                <form method="POST" style="height: 100%;display: flex;flex-direction: column;justify-content: space-between;" class="needs-validation" novalidate>
                     {% csrf_token %}
                     <div class="input">
                         <h3>Назва</h3>
-                        <input class="input inputNoteName" required type="text" name="name" placeholder="Назва">
+                        <input class="input inputNoteName form-control" maxlength="30" required type="text" name="name" placeholder="Назва">
                     </div>
                     <div class="input">
                         <h3>Подія</h3>
@@ -96,11 +96,11 @@ Kalendaru - Нотатки
                     </div>
                     <div class="input">
                         <h3>Опис</h3>
-                        <textarea class="textarea-message inputNoteDesc" required name="description" cols="83" rows="5" placeholder="Опис"></textarea>
+                        <textarea class="textarea-message inputNoteDesc form-control" required name="description" cols="83" rows="5" placeholder="Опис"></textarea>
                     </div>
                     <div class="input">
                         <h3>Дата</h3>
-                        <input class="input date-input inputNoteDate" required type="date" name="date" placeholder="Дата">
+                        <input class="input date-input inputNoteDate form-control" required type="date" name="date" placeholder="Дата">
                     </div>
                     <button class="add-note">Створити нотаток</button>
                 </form>

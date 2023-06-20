@@ -12,11 +12,11 @@ Kalendaru - Реєстрація
 {% block content %}
     <div class="signup">
         <h1>Реєстрація</h1>
-        <form method="POST" id="form-signin">
+        <form method="POST" id="form-signin"  class="needs-validation" novalidate>
             {% csrf_token %}
-            <input class="input" required type="text" name="nickname" id='login' placeholder="Логін">
-            <input class="input" required type="email" name="email" id='email' placeholder="Електронна пошта">
-            <input class="input" required type="password" name="password" id='password' placeholder="Пароль">
+            <input class="input form-control" required type="text" name="nickname" id='login' maxlength="20" placeholder="Логін">
+            <input class="input form-control" required type="email" name="email" id='email' placeholder="Електронна пошта">
+            <input class="input form-control" required type="password" name="password" id='password' placeholder="Пароль">
             
             <input type="file" style="display: none;" name="avatar" value="{% static 'img/noavatar.png' %}">
             <div class="checkbox">

@@ -6,7 +6,6 @@ let inputNoteAction = document.querySelector('.inputTaskAction')
 let inputNoteDesc = document.querySelector('.inputTaskDesc')
 let inputNoteDate = document.querySelector('.inputTaskDate')
 let inputDeleteTask = document.querySelectorAll('.remove-task')
-console.log($(".remove-note").attr('name'))
 buttonsNote.forEach(function (buttonNote, index, buttonsNote) {
     buttonNote.addEventListener('click', function () {
         let close = buttonNote.closest('div');
@@ -70,7 +69,6 @@ let taskPK
 inputDeleteTask.forEach(function (task, index, inputDeleteTask) {
     task.addEventListener('click', function () {
         taskPK = task
-        console.log(taskPK.value)
     })
 })
 $(document).ready(function () {

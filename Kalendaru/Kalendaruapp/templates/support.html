@@ -12,7 +12,7 @@ Kalendaru - Зворотній зв'язок
 {% block content %}
     <div class="support">
         <h1>Зворотній зв'язок</h1>
-        <form method="POST" id="form-support" action="{% url 'support' %}">
+        <form method="POST" id="form-support" action="{% url 'support' %}" class="needs-validation" novalidate>
             {% csrf_token %}
                 <input class="input" type="name" required name="name" placeholder="Ім'я">
                 <input class="input" type="email" required name="email" placeholder="Електронна пошта">

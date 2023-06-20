@@ -11,7 +11,7 @@ Kalendaru - Опції
 {% block modal %}
     <div class="modalDelete">
         <p style="margin-bottom: 0rem;">Для видалення облікового запису треба написати пароль</p>
-        <form method="POST" class="modalDeleteDiv" action="{% url 'login' %}">
+        <form method="POST" class="modalDeleteDiv">
             {% csrf_token %}
             <input type="password" class='passwordModalDelete' name='passwordModalDelete' placeholder="Пароль" required>
             
@@ -25,8 +25,8 @@ Kalendaru - Опції
         <p style="margin-bottom: 0rem;">Напишіть новий пароль</p>
         <form method="POST" class="modalDeleteDiv modalChangePass" style='gap: 5px;'>
             {% csrf_token %}
-            <input type="password" class='passwordModalDelete' name='passwordModalOld' placeholder="Старий Пароль" required>
-            <input type="password" class='passwordModalDelete' name='passwordModalNew' placeholder="Новий Пароль" required>
+            <input type="password" class='passwordModalDelete form-control' name='passwordModalOld' placeholder="Старий Пароль" required>
+            <input type="password" class='passwordModalDelete form-control' name='passwordModalNew' placeholder="Новий Пароль" required>
             <div class="buttons-modal-delete">
                 <button class="button-modal-delete button-delete" name='change_password'>Змінити</button>
                 <a type="button" class="button-modal-delete button-not-change button-no-delete">Не змінювати</a>
@@ -102,6 +102,8 @@ Kalendaru - Опції
                 {% else %}
                     <h2>Обліковий запис</h2>
                     <a style="-webkit-appearance: button; -moz-appearance: button; appearance: button; text-decoration: none; color: initial;" href="{% url 'login' %}">Увійти в обліковий запис</a>
+                    <button class="delete-button" style='display: none;'>Видалити обліковий запис (не рекомендується)</button>
+                    <button class="button-profile change-password" style='display: none;'>Змінити пароль</button>
                 {% endif %}
                 </div>
             </div>

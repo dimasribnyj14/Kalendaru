@@ -12,10 +12,10 @@ Kalendaru - Вхід
 {% block content %}
     <div class="signin">
         <h1>Вхід</h1>
-        <form method="POST" id="form-signin">
+        <form method="POST" id="form-signin" class="needs-validation" novalidate>
             {% csrf_token %}
-            <input class="input" type="username" required name="username" id='login' placeholder="Логін">
-            <input class="input" type="password" required name="password" id='password' placeholder="Пароль">
+            <input class="input form-control" type="username" required name="username" maxlength="20" id='login' placeholder="Логін">
+            <input class="input form-control" type="password" required name="password" id='password' placeholder="Пароль">
 
             <div class="buttons-signin"> 
                 <button class="button-signin">Увійти</button>

@@ -124,10 +124,8 @@ notDelete.addEventListener('click', function (event) {
 $('.main-notification').on("click", requestPermission)
 $('.main-notification').on("click", function () {
     if (document.getElementById('main-notification').checked) {
-        console.log("wok")
         localStorage.setItem('PushN', 'true')
     } else {
-        console.log("woked")
         localStorage.setItem('PushN', 'false')
     }
     if (localStorage.getItem('PushN') == 'true') {
