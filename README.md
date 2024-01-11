@@ -5,4 +5,4 @@ FigJam Project:
 https://www.figma.com/file/dDYLR29yRWpSbSJXPKF5QH/FigJam-Project?type=whiteboard&node-id=0%3A1&t=0qLj9xLeCfVHDld6-1
 
 Link to the site:
-https://kalendaru.pythonanywhere.com/ **(It's now disabled)**
+https://kalendaru.pythonanywhere.com/ **(It's now disabled. Calendar's function is broken)**
